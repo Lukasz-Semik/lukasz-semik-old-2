@@ -8,7 +8,12 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'default-case': 'off',
-    'max-len': 2,
+    'max-len': [
+      'error',
+      {
+        code: 100,
+      },
+    ],
     'global-require': 'off',
     'consistent-return': 'off',
     'import/extensions': 'off',

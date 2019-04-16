@@ -1,16 +1,15 @@
 <template>
   <div>
-    dsadasd
-    <first-element />
+    <background-element/>
   </div>
 </template>
 
 <script>
-import { FirstElement } from '@/components/Atoms';
+import { BackgroundElement } from '@/components/Atoms';
 
 export default {
   components: {
-    FirstElement,
+    BackgroundElement,
   },
 };
 </script>

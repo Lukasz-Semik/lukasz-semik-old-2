@@ -1,1 +1,1 @@
-export { default as FirstElement } from './FirstElement';
+export { default as BackgroundElement } from './BackgroundElement/BackgroundElement';
