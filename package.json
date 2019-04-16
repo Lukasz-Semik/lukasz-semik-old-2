@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service test:unit",
-    "prepush": "yarn lint && yarn test"
+    "prepush": "yarn lint"
   },
   "dependencies": {
     "core-js": "^2.6.5",
