@@ -1,8 +1,17 @@
-.bb {
+.background {
   position: relative;
   width: 100vw;
   height: 100vh;
   background-color: green;
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 66, 0, 0.3);
+  }
 
   svg {
     position: fixed;
