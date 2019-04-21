@@ -1,15 +1,15 @@
 <template>
   <div>
-    <background-element/>
+    <underwater-page/>
   </div>
 </template>
 
 <script>
-import { BackgroundElement } from '@/components/Atoms';
+import UnderwaterPage from '@/components/Pages/UnderwaterPage/UnderwaterPage';
 
 export default {
   components: {
-    BackgroundElement,
+    UnderwaterPage,
   },
 };
 </script>

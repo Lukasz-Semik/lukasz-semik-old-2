@@ -22,8 +22,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         data: `
-          @import "~@/styles/_colors";
-          @import "~@/styles/_base";
+          @import "~@/styles/main";
         `,
       },
     },
