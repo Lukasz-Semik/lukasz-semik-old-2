@@ -1,5 +1,9 @@
 <template>
-  <div :style="{ animationDelay: `${animationDelay}s` }" :class="getWrapperClassName">
+  <div
+    data-test="animated-wrapper"
+    :style="{ animationDelay: `${animationDelay}s` }"
+    :class="getWrapperClassName"
+  >
     <slot/>
   </div>
 </template>

@@ -43,4 +43,16 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint',
   },
+  overrides: [
+    {
+      files: ['**/*.spec.js'],
+      globals: {
+        describe: true,
+        it: true,
+        expect: true,
+        beforeEach: true,
+        jest: true,
+      },
+    },
+  ],
 };

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UnderwaterPage /> should render UnderwaterPage properly 1`] = `
+<div class="wrapper">
+  <background-element-stub></background-element-stub>
+  <div class="title-wrapper">
+    <wavy-title-stub translationpath="underwater.welcomeText"></wavy-title-stub>
+  </div>
+</div>
+`;
