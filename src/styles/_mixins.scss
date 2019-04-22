@@ -4,3 +4,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin at-small() {
+  @media (min-width: 450px) {
+    @content;
+  }
+}
+
+@mixin at-medium() {
+  @media (min-width: 700px) {
+    @content;
+  }
+}

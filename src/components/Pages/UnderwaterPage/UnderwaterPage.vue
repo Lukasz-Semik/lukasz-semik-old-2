@@ -3,7 +3,7 @@
     <background-element/>
 
     <div :class="[$style['title-wrapper']]">
-      <wavy-title/>
+      <wavy-title translation-path="underwater.welcomeText"/>
     </div>
   </div>
 </template>

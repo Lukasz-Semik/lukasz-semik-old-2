@@ -1,0 +1,37 @@
+<template>
+  <div :style="{ animationDelay: `${animationDelay}s` }" :class="getWrapperClassName">
+    <slot/>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'AnimatedElement',
+  props: {
+    animationClass: {
+      type: String,
+      default: '',
+    },
+    hasAnimation: {
+      type: Boolean,
+      default: false,
+    },
+    animationDelay: {
+      type: Number,
+      default: 0,
+    },
+  },
+  computed: {
+    getWrapperClassName() {
+      const { $style, hasAnimation, animationClass } = this;
+
+      return {
+        [$style['wrapper']]: true,
+        [animationClass]: hasAnimation,
+      };
+    },
+  },
+};
+</script>
+
+<style lang="scss" module src="./AnimatedElement.scss" />

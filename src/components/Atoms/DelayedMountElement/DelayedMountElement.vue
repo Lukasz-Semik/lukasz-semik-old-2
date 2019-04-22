@@ -4,11 +4,7 @@
       <slot/>
     </div>
 
-    <transition
-      mode="out-in"
-      :enter-active-class="$style['fade-enter-active']"
-      :enter-class="$style['fade-enter']"
-    >
+    <transition mode="out-in" :enter-active-class="enterActiveClass" :enter-class="enterClass">
       <div :class="$style['real-content']" v-if="isVisible">
         <slot/>
       </div>
@@ -27,6 +23,14 @@ export default {
     delay: {
       type: Number,
       default: 0,
+    },
+    enterActiveClass: {
+      type: String,
+      default: '',
+    },
+    enterClass: {
+      tupe: String,
+      default: '',
     },
   },
   created() {

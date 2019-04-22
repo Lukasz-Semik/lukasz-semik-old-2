@@ -1,28 +1,42 @@
 <template>
   <h2 :class="$style['title']">
-    <vertical-moving-element
+    <animated-element
       v-for="(letter, i) in text"
       :key="`${letter}-${i}`"
+      :animation-class="$style['vertical-move-animation']"
       :animation-delay="-i / 5"
       :has-animation="Boolean(letter.trim())"
     >
-      <delayed-mount-element :delay="(i * 500) / 5" has-initial-content-width>{{ letter }}</delayed-mount-element>
-    </vertical-moving-element>
+      <div :class="$style['letter']">
+        <delayed-mount-element
+          :delay="(i * 600) / 5"
+          :enter-active-class="$style['letter-enter-active']"
+          :enter-class="$style['letter-enter']"
+          has-initial-content-width
+        >{{ letter }}</delayed-mount-element>
+      </div>
+    </animated-element>
   </h2>
 </template>
 
 <script>
-import { DelayedMountElement, VerticalMovingElement } from '@/components/Atoms';
+import { DelayedMountElement, AnimatedElement } from '@/components/Atoms';
 
 export default {
   name: 'WavyTitle',
+  props: {
+    translationPath: {
+      type: String,
+      required: true,
+    },
+  },
   components: {
     DelayedMountElement,
-    VerticalMovingElement,
+    AnimatedElement,
   },
   computed: {
     text() {
-      return 'Hi! I am Łukasz'.split('');
+      return this.$t(this.translationPath).split('');
     },
   },
 };
