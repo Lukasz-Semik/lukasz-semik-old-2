@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import { BackgroundElement, WavyTitle } from '@/components/Atoms';
+import { BackgroundElement } from '@/components/Atoms';
+import { WavyTitle } from '@/components/Molecules';
 
 export default {
   name: 'UnderwaterPage',

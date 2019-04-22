@@ -1,0 +1,22 @@
+.wrapper {
+  position: relative;
+}
+
+.fake-content {
+  visibility: hidden;
+}
+
+.real-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: black;
+}
+
+.fade-enter-active {
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-enter {
+  opacity: 0;
+}
