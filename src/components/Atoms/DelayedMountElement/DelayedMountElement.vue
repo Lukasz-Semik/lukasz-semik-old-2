@@ -5,7 +5,7 @@
     </div>
 
     <transition mode="out-in" :enter-active-class="enterActiveClass" :enter-class="enterClass">
-      <div :class="$style['real-content']" v-if="isVisible">
+      <div data-test="real-content" :class="$style['real-content']" v-if="isVisible">
         <slot/>
       </div>
     </transition>
