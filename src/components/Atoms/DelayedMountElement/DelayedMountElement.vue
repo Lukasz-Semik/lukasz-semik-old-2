@@ -1,6 +1,6 @@
 <template>
   <div :class="$style['wrapper']">
-    <div v-if="hasInitialContentWidth" :class="$style['fake-content']">
+    <div data-test="fake-content" v-if="hasInitialContentWidth" :class="$style['fake-content']">
       <slot/>
     </div>
 
