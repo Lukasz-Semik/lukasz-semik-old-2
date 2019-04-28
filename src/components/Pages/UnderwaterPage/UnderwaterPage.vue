@@ -1,9 +1,9 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <background-element/>
+    <background-element />
 
     <div :class="[$style['title-wrapper']]">
-      <wavy-title translation-path="underwater.welcomeText"/>
+      <wavy-title translation-path="underwater.welcomeText" />
     </div>
   </div>
 </template>

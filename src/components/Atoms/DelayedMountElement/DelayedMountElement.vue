@@ -1,12 +1,12 @@
 <template>
   <div :class="$style['wrapper']">
     <div data-test="fake-content" v-if="hasInitialContentWidth" :class="$style['fake-content']">
-      <slot/>
+      <slot />
     </div>
 
     <transition mode="out-in" :enter-active-class="enterActiveClass" :enter-class="enterClass">
       <div data-test="real-content" :class="$style['real-content']" v-if="isVisible">
-        <slot/>
+        <slot />
       </div>
     </transition>
   </div>

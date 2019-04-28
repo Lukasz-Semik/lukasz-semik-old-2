@@ -14,7 +14,9 @@
           :enter-active-class="$style['letter-enter-active']"
           :enter-class="$style['letter-enter']"
           has-initial-content-width
-        >{{ letter }}</delayed-mount-element>
+        >
+          {{ letter }}
+        </delayed-mount-element>
       </div>
     </animated-element>
   </h2>

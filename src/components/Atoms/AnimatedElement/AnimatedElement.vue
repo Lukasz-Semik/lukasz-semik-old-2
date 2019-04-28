@@ -4,7 +4,7 @@
     :style="{ animationDelay: `${animationDelay}s` }"
     :class="getWrapperClassName"
   >
-    <slot/>
+    <slot />
   </div>
 </template>
 

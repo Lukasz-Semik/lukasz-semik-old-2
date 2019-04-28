@@ -1,6 +1,6 @@
 <template>
   <div>
-    <underwater-page/>
+    <underwater-page />
   </div>
 </template>
 
