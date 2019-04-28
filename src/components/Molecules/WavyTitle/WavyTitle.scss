@@ -25,16 +25,16 @@
   margin-right: 1px;
 }
 
-.vertical-move-animation {
+.wavy-move-animation {
   transform: translateY(-5%);
-  animation: vertical-move 2s alternate infinite ease-in-out;
+  animation: wavy-move 2s alternate infinite ease-in-out;
 }
 
-@keyframes vertical-move {
+@keyframes wavy-move {
   0% {
-    transform: translateY(-5%);
+    transform: translateY(-5%) scale(1.06);
   }
   100% {
-    transform: translateY(5%);
+    transform: translateY(5%) scale(1);
   }
 }

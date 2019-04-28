@@ -4,7 +4,7 @@
       data-test="letter-wrapper"
       v-for="(letter, i) in text"
       :key="`${letter}-${i}`"
-      :animation-class="$style['vertical-move-animation']"
+      :animation-class="$style['wavy-move-animation']"
       :animation-delay="-i / 5"
       :has-animation="Boolean(letter.trim())"
     >
