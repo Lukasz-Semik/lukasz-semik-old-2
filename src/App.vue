@@ -1,16 +1,15 @@
 <template>
   <div>
-    dsadasd
-    <first-element />
+    <underwater-page />
   </div>
 </template>
 
 <script>
-import { FirstElement } from '@/components/Atoms';
+import UnderwaterPage from '@/components/Pages/UnderwaterPage/UnderwaterPage';
 
 export default {
   components: {
-    FirstElement,
+    UnderwaterPage,
   },
 };
 </script>

@@ -1,0 +1,40 @@
+.title {
+  display: flex;
+  font-family: 'Caveat Brush', cursive;
+  font-size: 5rem;
+
+  @include at-small {
+    font-size: 7rem;
+  }
+
+  @include at-medium {
+    font-size: 10rem;
+  }
+}
+
+.letter-enter-active {
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+.letter-enter {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.letter {
+  margin-right: 1px;
+}
+
+.wavy-move-animation {
+  transform: translateY(-5%);
+  animation: wavy-move 2s alternate infinite ease-in-out;
+}
+
+@keyframes wavy-move {
+  0% {
+    transform: translateY(-5%) scale(1.06);
+  }
+  100% {
+    transform: translateY(5%) scale(1);
+  }
+}

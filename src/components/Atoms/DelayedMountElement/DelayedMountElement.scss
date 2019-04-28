@@ -1,0 +1,13 @@
+.wrapper {
+  position: relative;
+}
+
+.fake-content {
+  visibility: hidden;
+}
+
+.real-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

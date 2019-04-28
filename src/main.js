@@ -1,8 +1,18 @@
 import Vue from 'vue';
-import App from './App.vue';
+import VueI18n from 'vue-i18n';
 
-Vue.config.productionTip = false;
+import App from './App.vue';
+import messages from './i18n';
+
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+  locale: 'en',
+  messages,
+});
 
 new Vue({
   render: h => h(App),
-}).$mount('#app');
+  el: '#app',
+  i18n,
+});

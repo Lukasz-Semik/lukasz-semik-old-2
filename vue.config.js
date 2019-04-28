@@ -22,11 +22,13 @@ module.exports = {
     loaderOptions: {
       sass: {
         data: `
-          @import "~@/styles/_base";
+          @import "~@/styles/main";
         `,
       },
     },
   },
-  transpileDependencies: ['vue-match-media'],
   productionSourceMap: false,
+  devServer: {
+    port: 8000,
+  },
 };
