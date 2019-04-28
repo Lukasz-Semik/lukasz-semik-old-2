@@ -1,13 +1,14 @@
 <template>
   <h2 :class="$style['title']">
     <animated-element
+      data-test="letter-wrapper"
       v-for="(letter, i) in text"
       :key="`${letter}-${i}`"
       :animation-class="$style['vertical-move-animation']"
       :animation-delay="-i / 5"
       :has-animation="Boolean(letter.trim())"
     >
-      <div :class="$style['letter']">
+      <div data-test="letter" :class="$style['letter']">
         <delayed-mount-element
           :delay="(i * 600) / 5"
           :enter-active-class="$style['letter-enter-active']"
