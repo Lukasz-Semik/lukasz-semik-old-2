@@ -2,7 +2,7 @@
   <div
     data-test="animated-wrapper"
     :style="{ animationDelay: `${animationDelay}s` }"
-    :class="getWrapperClassName"
+    :class="getClassNames"
   >
     <slot />
   </div>
@@ -26,7 +26,7 @@ export default {
     },
   },
   computed: {
-    getWrapperClassName() {
+    getClassNames() {
       const { $style, hasAnimation, animationClass } = this;
 
       return {

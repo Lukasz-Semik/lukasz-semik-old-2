@@ -29,7 +29,7 @@ export default {
       default: '',
     },
     enterClass: {
-      tupe: String,
+      type: String,
       default: '',
     },
   },
