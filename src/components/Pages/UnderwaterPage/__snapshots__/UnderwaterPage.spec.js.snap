@@ -3,6 +3,7 @@
 exports[`<UnderwaterPage /> should render UnderwaterPage properly 1`] = `
 <div class="wrapper">
   <background-element-stub></background-element-stub>
+  <game-stub></game-stub>
   <div class="title-wrapper">
     <wavy-title-stub translationpath="underwater.welcomeText"></wavy-title-stub>
   </div>

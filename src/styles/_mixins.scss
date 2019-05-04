@@ -5,6 +5,21 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin overlay($position: absolute) {
+  position: $position;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@mixin button-reset {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
 @mixin at-small() {
   @media (min-width: 450px) {
     @content;
