@@ -1,13 +1,13 @@
 <template>
   <div :class="$style['wrapper']">
-    <DropElement :key="drop.id" :id="drop.id" v-for="drop in drops" @handleSwimEnd="onSwimEnd"/>
+    <drop-element v-for="drop in drops" :key="drop.id" :id="drop.id" @handleSwimEnd="onSwimEnd" />
   </div>
 </template>
 
 <script>
 import uuid from 'uuid/v4';
 
-import { DropElement } from '@/components/Atoms';
+import DropElement from './DropElement/DropElement';
 
 export default {
   components: {

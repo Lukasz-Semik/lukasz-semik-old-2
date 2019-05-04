@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { DelayedMountElement, AnimatedElement } from '@/components/Atoms';
+import { DelayedMountElement, AnimatedElement } from '@/components/Elements';
 
 export default {
   name: 'WavyTitle',

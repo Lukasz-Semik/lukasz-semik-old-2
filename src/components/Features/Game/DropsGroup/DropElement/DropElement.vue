@@ -1,7 +1,7 @@
 <template>
   <div :class="wrapperClassName" :style="{ left: leftOffsetAll }" @animationend.self="onSwimEnd">
     <div :class="innerWrapperClassName" @animationend.self="onShowEnd">
-      <button :class="$style['main-button']" @click="onMainHit"/>
+      <button :class="$style['main-button']" @click="onMainHit" />
       <button
         :class="$style['secondary-button']"
         :style="{ top: topOffsetSecondaryBtn, left: leftOffsetSecondaryBtn }"

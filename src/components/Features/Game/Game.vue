@@ -1,12 +1,11 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <h1>dsadasd</h1>
-    <drops-group/>
+    <drops-group />
   </div>
 </template>
 
 <script>
-import { DropsGroup } from '@/components/Molecules';
+import DropsGroup from './DropsGroup/DropsGroup';
 
 export default {
   components: {

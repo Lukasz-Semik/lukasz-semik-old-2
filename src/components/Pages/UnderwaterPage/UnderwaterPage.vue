@@ -1,18 +1,17 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <background-element/>
-    <game/>
+    <background-element />
+    <game />
 
     <div :class="[$style['title-wrapper']]">
-      <wavy-title translation-path="underwater.welcomeText"/>
+      <wavy-title translation-path="underwater.welcomeText" />
     </div>
   </div>
 </template>
 
 <script>
-import { BackgroundElement } from '@/components/Atoms';
-import { WavyTitle } from '@/components/Molecules';
-import { Game } from '@/components/Organisms';
+import { BackgroundElement } from '@/components/Elements';
+import { WavyTitle, Game } from '@/components/Features';
 
 export default {
   name: 'UnderwaterPage',
