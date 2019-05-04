@@ -1,7 +1,11 @@
 <template>
   <div :class="wrapperClassName" :style="{ left: leftOffsetAll }" @animationend.self="onSwimEnd">
+    <div :class="$style['satelites-wrapper']">
+      <drop-satellites v-for="item in 4" :key="item" :index="item" :is-visible="isHit"/>
+    </div>
+
     <div :class="innerWrapperClassName" @animationend.self="onShowEnd">
-      <button :class="$style['main-button']" @click="onMainHit" />
+      <button :class="$style['main-button']" @click="onMainHit"/>
       <button
         :class="$style['secondary-button']"
         :style="{ top: topOffsetSecondaryBtn, left: leftOffsetSecondaryBtn }"
@@ -13,10 +17,15 @@
 <script>
 import { generateRandom } from '@/helpers/math';
 
+import DropSatellites from '../DropSatellites/DropSatellites';
+
 const minOffset = 14;
 const maxOffset = 56;
 
 export default {
+  components: {
+    DropSatellites,
+  },
   props: {
     id: {
       type: String,
@@ -37,7 +46,7 @@ export default {
 
     setTimeout(() => {
       this.isMounted = true;
-    }, generateRandom(0, 10000));
+    }, generateRandom(0, 30000));
   },
   methods: {
     onShowEnd() {
@@ -72,4 +81,4 @@ export default {
 };
 </script>
 
-<style lang="scss" module src="./DropElement.scss" />
+<style lang="scss" module src="./DropMain.scss" />

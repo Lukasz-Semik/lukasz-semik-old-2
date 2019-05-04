@@ -5,7 +5,7 @@
   height: 4.5rem;
 
   &.is-swimming {
-    animation: swim 20s linear;
+    animation: swim 10s linear;
   }
 }
 
@@ -26,6 +26,14 @@
     transform: scale(1);
     animation: show 0.5s;
   }
+}
+
+.satelites-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .main-button {

@@ -1,0 +1,65 @@
+$radius-max: -60px;
+
+@mixin button-specific($x, $y, $animation-name, $translation-x, $translation-y) {
+  opacity: 0;
+  transform: scale(0.5) translate($translation-x, $translation-y);
+  animation: #{$animation-name} 4s linear;
+  #{$x}: $radius-max;
+  #{$y}: $radius-max;
+
+  @keyframes #{$animation-name} {
+    0% {
+      opacity: 0;
+      #{$x}: 50%;
+      #{$y}: 50%;
+    }
+
+    50% {
+      opacity: inherit;
+      transform: scale(1.3), translate($translation-x, $translation-y);
+    }
+
+    75% {
+      opacity: inherit;
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(0.5), translate($translation-x, $translation-y);
+      #{$x}: $radius-max;
+      #{$y}: $radius-max;
+    }
+  }
+}
+
+.button {
+  @include button-reset;
+
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: $light-teal;
+  border: 2px solid $white-teal;
+  transform: translate(-50%, -50%);
+
+  &--1 {
+    @include button-specific(top, left, s-1, -50%, -50%);
+  }
+
+  &--2 {
+    @include button-specific(top, right, s-2, 50%, -50%);
+  }
+
+  &--3 {
+    @include button-specific(bottom, right, s-3, 50%, 50%);
+  }
+
+  &--4 {
+    @include button-specific(bottom, left, s-4, -50%, 50%);
+  }
+
+  &.is-hit {
+    display: none;
+  }
+}
