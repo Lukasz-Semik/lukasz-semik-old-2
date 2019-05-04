@@ -5,20 +5,14 @@
   background-color: green;
 
   .overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    @include overlay;
+
     background-color: rgba(0, 66, 0, 0.3);
   }
 
   svg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    @include overlay(fixed);
+
     width: 100% !important;
     height: 100% !important;
   }
