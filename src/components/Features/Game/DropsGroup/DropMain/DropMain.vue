@@ -20,7 +20,7 @@
     </div>
 
     <div data-test="inner-wrapper" :class="innerWrapperClassName" @animationend.self="onShowEnd">
-      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit"/>
+      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit" />
       <button
         data-test="secondary-button"
         :class="$style['secondary-button']"
