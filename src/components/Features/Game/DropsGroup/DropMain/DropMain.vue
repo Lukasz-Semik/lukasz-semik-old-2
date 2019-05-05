@@ -1,7 +1,12 @@
 <template>
   <div :class="wrapperClassName" :style="{ left: leftOffsetAll }" @animationend.self="onSwimEnd">
-    <div :class="$style['satelites-wrapper']">
-      <drop-satellites v-for="item in 4" :key="item" :index="item" :is-visible="isHit"/>
+    <div :class="$style['satelites-wrapper']" :style="{ transform: satellitesRotate }">
+      <drop-satellites
+        v-for="satellite in satellitesQty"
+        :key="satellite"
+        :index="satellite"
+        :is-visible="isHit"
+      />
     </div>
 
     <div :class="innerWrapperClassName" @animationend.self="onShowEnd">
@@ -19,8 +24,11 @@ import { generateRandom } from '@/helpers/math';
 
 import DropSatellites from '../DropSatellites/DropSatellites';
 
-const minOffset = 14;
-const maxOffset = 56;
+const minOffsetSecBtn = 14;
+const maxOffsetSecBtn = 56;
+const minOffsetAll = 3;
+const maxOffsetAll = 97;
+const satellitesQty = 4;
 
 export default {
   components: {
@@ -37,12 +45,24 @@ export default {
       isMounted: false,
       isSwimming: false,
       isHit: false,
+      topOffsetSecondaryBtn: '0',
+      leftOffsetSecondaryBtn: '0',
+      leftOffsetAllRandom: '0',
+      leftOffsetAll: '0',
+      satellitesRotate: '0',
     };
   },
   created() {
-    this.topOffsetSecondaryBtn = `${generateRandom(minOffset, maxOffset)}%`;
-    this.leftOffsetSecondaryBtn = `${generateRandom(minOffset, maxOffset)}%`;
-    this.leftOffsetAll = `${generateRandom(0, 85)}%`;
+    this.topOffsetSecondaryBtn = `${generateRandom(minOffsetSecBtn, maxOffsetSecBtn)}%`;
+    this.leftOffsetSecondaryBtn = `${generateRandom(minOffsetSecBtn, maxOffsetSecBtn)}%`;
+
+    const leftOffsetAllRandom = generateRandom(minOffsetAll, maxOffsetAll);
+    this.leftOffsetAll =
+      leftOffsetAllRandom >= 90
+        ? `calc(${leftOffsetAllRandom}% - 5rem)`
+        : `${leftOffsetAllRandom}%`;
+
+    this.satellitesRotate = `rotate(${generateRandom(0, 360)}deg)`;
 
     setTimeout(() => {
       this.isMounted = true;
@@ -60,6 +80,9 @@ export default {
     },
   },
   computed: {
+    satellitesQty() {
+      return satellitesQty;
+    },
     wrapperClassName() {
       const { $style, isSwimming } = this;
 

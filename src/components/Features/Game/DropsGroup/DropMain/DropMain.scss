@@ -3,6 +3,7 @@
   top: 85%;
   width: 4.5rem;
   height: 4.5rem;
+  opacity: 0.5;
 
   &.is-swimming {
     animation: swim 10s linear;
@@ -21,7 +22,7 @@
   transition: all 0.5s;
 
   &.is-visible {
-    opacity: 0.3;
+    opacity: inherit;
     pointer-events: all;
     transform: scale(1);
     animation: show 0.5s;
@@ -34,6 +35,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  transform-origin: 50% 50%;
 }
 
 .main-button {
@@ -67,7 +69,7 @@
     transform: scale(1.5);
   }
   100% {
-    opacity: 0.3;
+    opacity: inherit;
     transform: scale(1);
   }
 }
@@ -76,11 +78,7 @@
   0% {
     top: 85%;
   }
-  90% {
-    transform: scale(0.8);
-  }
   100% {
     top: 0;
-    transform: scale(0);
   }
 }

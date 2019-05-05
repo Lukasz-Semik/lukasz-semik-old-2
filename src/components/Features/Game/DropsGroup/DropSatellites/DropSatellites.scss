@@ -14,6 +14,10 @@ $radius-max: -60px;
       #{$y}: 50%;
     }
 
+    10% {
+      opacity: 0;
+    }
+
     50% {
       opacity: inherit;
       transform: scale(1.3), translate($translation-x, $translation-y);

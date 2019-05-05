@@ -9,6 +9,8 @@ import uuid from 'uuid/v4';
 
 import DropMain from './DropMain/DropMain';
 
+const dropsQty = 40;
+
 export default {
   components: {
     DropMain,
@@ -19,8 +21,7 @@ export default {
     };
   },
   created() {
-    // 40
-    this.drops = new Array(40).fill(null).map(() => ({ id: uuid() }));
+    this.drops = new Array(dropsQty).fill(null).map(() => ({ id: uuid() }));
   },
   methods: {
     onSwimEnd({ id }) {
