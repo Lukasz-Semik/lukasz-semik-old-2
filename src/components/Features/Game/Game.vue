@@ -8,6 +8,7 @@
 import DropsGroup from './DropsGroup/DropsGroup';
 
 export default {
+  name: 'Game',
   components: {
     DropsGroup,
   },

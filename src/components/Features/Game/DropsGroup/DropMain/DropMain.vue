@@ -42,6 +42,7 @@ const maxOffsetAll = 97;
 const satellitesQty = 4;
 
 export default {
+  name: 'DropMain',
   components: {
     DropSatellite,
   },

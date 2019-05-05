@@ -18,6 +18,7 @@ import DropMain from './DropMain/DropMain';
 const dropsQty = 40;
 
 export default {
+  name: 'DropsGroup',
   components: {
     DropMain,
   },
