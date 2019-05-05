@@ -1,17 +1,28 @@
 <template>
-  <div :class="wrapperClassName" :style="{ left: leftOffsetAll }" @animationend.self="onSwimEnd">
-    <div :class="$style['satelites-wrapper']" :style="{ transform: satellitesRotate }">
-      <drop-satellites
+  <div
+    data-test="wrapper"
+    :class="wrapperClassName"
+    :style="{ left: leftOffsetAll }"
+    @animationend.self="onSwimEnd"
+  >
+    <div
+      data-test="satellites-wrapper"
+      :class="$style['satellites-wrapper']"
+      :style="{ transform: satellitesRotate }"
+    >
+      <drop-satellite
         v-for="satellite in satellitesQty"
+        data-test="satellite"
         :key="satellite"
         :index="satellite"
         :is-visible="isHit"
       />
     </div>
 
-    <div :class="innerWrapperClassName" @animationend.self="onShowEnd">
-      <button :class="$style['main-button']" @click="onMainHit"/>
+    <div data-test="inner-wrapper" :class="innerWrapperClassName" @animationend.self="onShowEnd">
+      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit"/>
       <button
+        data-test="secondary-button"
         :class="$style['secondary-button']"
         :style="{ top: topOffsetSecondaryBtn, left: leftOffsetSecondaryBtn }"
       />
@@ -22,7 +33,7 @@
 <script>
 import { generateRandom } from '@/helpers/math';
 
-import DropSatellites from '../DropSatellites/DropSatellites';
+import DropSatellite from '../DropSatellite/DropSatellite';
 
 const minOffsetSecBtn = 14;
 const maxOffsetSecBtn = 56;
@@ -32,7 +43,7 @@ const satellitesQty = 4;
 
 export default {
   components: {
-    DropSatellites,
+    DropSatellite,
   },
   props: {
     id: {
@@ -62,7 +73,7 @@ export default {
         ? `calc(${leftOffsetAllRandom}% - 5rem)`
         : `${leftOffsetAllRandom}%`;
 
-    this.satellitesRotate = `rotate(${generateRandom(0, 360)}deg)`;
+    this.satellitesRotate = `rotate(${generateRandom(1, 360)}deg)`;
 
     setTimeout(() => {
       this.isMounted = true;
