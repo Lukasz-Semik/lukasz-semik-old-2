@@ -1,17 +1,25 @@
 <template>
   <div :class="$style['wrapper']">
-    <drop-element v-for="drop in drops" :key="drop.id" :id="drop.id" @handleSwimEnd="onSwimEnd" />
+    <drop-main
+      v-for="drop in drops"
+      data-test="drop"
+      :key="drop.id"
+      :id="drop.id"
+      @handleSwimEnd="onSwimEnd"
+    />
   </div>
 </template>
 
 <script>
 import uuid from 'uuid/v4';
 
-import DropElement from './DropElement/DropElement';
+import DropMain from './DropMain/DropMain';
+
+const dropsQty = 40;
 
 export default {
   components: {
-    DropElement,
+    DropMain,
   },
   data() {
     return {
@@ -19,7 +27,7 @@ export default {
     };
   },
   created() {
-    this.drops = new Array(30).fill(null).map(() => ({ id: uuid() }));
+    this.drops = new Array(dropsQty).fill(null).map(() => ({ id: uuid() }));
   },
   methods: {
     onSwimEnd({ id }) {

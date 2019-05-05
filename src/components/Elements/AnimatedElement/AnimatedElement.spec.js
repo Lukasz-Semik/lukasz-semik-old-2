@@ -26,7 +26,7 @@ describe('<AnimatedElement>', () => {
     expect(slot.text()).toBe('Test slot');
 
     const animatedWrapper = findByTestAttr(wrapper, 'animated-wrapper');
-    expect(animatedWrapper.attributes().style).toBe('animation-delay: 1s;');
+    expect(animatedWrapper.attributes('style')).toBe('animation-delay: 1s;');
     expect(animatedWrapper.classes()).toContain('wrapper');
     expect(animatedWrapper.classes()).not.toContain('some-animation');
   });
@@ -44,7 +44,7 @@ describe('<AnimatedElement>', () => {
     expect(slot.text()).toBe('Test slot');
 
     const animatedWrapper = findByTestAttr(wrapper, 'animated-wrapper');
-    expect(animatedWrapper.attributes().style).toBe('animation-delay: 1s;');
+    expect(animatedWrapper.attributes('style')).toBe('animation-delay: 1s;');
     expect(animatedWrapper.classes()).toContain('wrapper');
     expect(animatedWrapper.classes()).toContain('some-animation');
   });
