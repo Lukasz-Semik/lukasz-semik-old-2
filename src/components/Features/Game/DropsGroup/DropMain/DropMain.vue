@@ -31,9 +31,14 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
+
 import { generateRandom } from '@/helpers/math';
+import { game } from '@/store/game';
 
 import DropSatellite from '../DropSatellite/DropSatellite';
+
+const { isGamePristineState, setPreGameState, isPreGameState, isGameRunningState } = game;
 
 const minOffsetSecBtn = 14;
 const maxOffsetSecBtn = 56;
@@ -42,6 +47,7 @@ const maxOffsetAll = 97;
 const satellitesQty = 4;
 
 export default {
+  name: 'DropMain',
   components: {
     DropSatellite,
   },
@@ -80,6 +86,7 @@ export default {
     }, generateRandom(0, 30000));
   },
   methods: {
+    ...mapMutations({ setPreGameState }),
     onShowEnd() {
       this.isSwimming = true;
     },
@@ -87,19 +94,26 @@ export default {
       this.$emit('handleSwimEnd', { id: this.id });
     },
     onMainHit() {
+      if (this.isGamePristineState) {
+        return this.setPreGameState();
+      }
+
       this.isHit = true;
     },
   },
   computed: {
+    ...mapGetters({ isGamePristineState, isPreGameState, isGameRunningState }),
     satellitesQty() {
       return satellitesQty;
     },
     wrapperClassName() {
-      const { $style, isSwimming } = this;
+      const { $style, isSwimming, isPreGameState, isGameRunningState } = this;
 
       return {
         [$style['wrapper']]: true,
         [$style['is-swimming']]: isSwimming,
+        [$style['is-medium-visible']]: isPreGameState,
+        [$style['is-fully-visible']]: isGameRunningState,
       };
     },
     innerWrapperClassName() {

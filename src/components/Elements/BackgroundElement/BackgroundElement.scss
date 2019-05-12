@@ -8,6 +8,15 @@
     @include overlay;
 
     background-color: rgba(0, 66, 0, 0.3);
+    transition: background-color 0.5s;
+
+    &.has-medium-opacity {
+      background-color: rgba(0, 66, 0, 0.15);
+    }
+
+    &.has-no-opacity {
+      background-color: transparent;
+    }
   }
 
   svg {
