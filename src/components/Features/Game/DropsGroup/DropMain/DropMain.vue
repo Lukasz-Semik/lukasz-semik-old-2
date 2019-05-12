@@ -20,7 +20,7 @@
     </div>
 
     <div data-test="inner-wrapper" :class="innerWrapperClassName" @animationend.self="onShowEnd">
-      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit"/>
+      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit" />
       <button
         data-test="secondary-button"
         :class="$style['secondary-button']"
@@ -37,7 +37,7 @@ import { generateRandom } from '@/helpers/math';
 import { game } from '@/store/game';
 
 import DropSatellite from '../DropSatellite/DropSatellite';
-console.log(game);
+
 const { isGamePristineState, setPreGameState, isPreGameState, isGameRunningState } = game;
 
 const minOffsetSecBtn = 14;
