@@ -1,0 +1,18 @@
+.wrapper {
+  position: relative;
+  min-width: 1rem;
+}
+
+.wavy-move-animation {
+  transform: translateY(-5%);
+  animation: wavy-move 2s alternate infinite ease-in-out;
+}
+
+@keyframes wavy-move {
+  0% {
+    transform: translateY(-5%) scale(1.06);
+  }
+  100% {
+    transform: translateY(5%) scale(1);
+  }
+}
