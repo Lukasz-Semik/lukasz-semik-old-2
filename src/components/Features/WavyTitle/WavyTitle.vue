@@ -1,41 +1,28 @@
 <template>
   <h2 :class="$style['title']">
-    <animated-element
-      data-test="letter-wrapper"
+    <animated-letter
+      data-test="animated-letter"
       v-for="(letter, i) in text"
       :key="`${letter}-${i}`"
-      :animation-class="$style['wavy-move-animation']"
-      :animation-delay="-i / 5"
-      :has-animation="Boolean(letter.trim())"
-    >
-      <div data-test="letter" :class="$style['letter']">
-        <delayed-mount-element
-          :delay="(i * 600) / 5"
-          :enter-active-class="$style['letter-enter-active']"
-          :enter-class="$style['letter-enter']"
-          has-initial-content-width
-        >
-          {{ letter }}
-        </delayed-mount-element>
-      </div>
-    </animated-element>
+      :letter="letter"
+      :index="i"
+    />
   </h2>
 </template>
 
 <script>
-import { DelayedMountElement, AnimatedElement } from '@/components/Elements';
+import AnimatedLetter from './AnimatedLetter/AnimatedLetter';
 
 export default {
   name: 'WavyTitle',
+  components: {
+    AnimatedLetter,
+  },
   props: {
     translationPath: {
       type: String,
       required: true,
     },
-  },
-  components: {
-    DelayedMountElement,
-    AnimatedElement,
   },
   computed: {
     text() {

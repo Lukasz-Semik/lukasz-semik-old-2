@@ -16,7 +16,6 @@ describe('<WaveyTitle />', () => {
   });
 
   it('should render elements with quantity equal to text length', () => {
-    expect(findAllByTestAttr(wrapper, 'letter-wrapper')).toHaveLength(text.length);
-    expect(findAllByTestAttr(wrapper, 'letter')).toHaveLength(text.length);
+    expect(findAllByTestAttr(wrapper, 'animated-letter')).toHaveLength(text.length);
   });
 });
