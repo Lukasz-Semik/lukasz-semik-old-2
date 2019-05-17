@@ -1,0 +1,19 @@
+.background {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: green;
+
+  .overlay {
+    @include overlay;
+
+    background-color: rgba(0, 66, 0, 0.3);
+  }
+
+  svg {
+    @include overlay(fixed);
+
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
