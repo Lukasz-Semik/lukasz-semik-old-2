@@ -20,7 +20,7 @@
     </div>
 
     <div data-test="inner-wrapper" :class="innerWrapperClassName" @animationend.self="onShowEnd">
-      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit" />
+      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit"/>
       <button
         data-test="secondary-button"
         :class="$style['secondary-button']"
@@ -38,7 +38,7 @@ import { game } from '@/store/game';
 
 import DropSatellite from '../DropSatellite/DropSatellite';
 
-const { isGamePristineState, setPreGameState, isPreGameState, isGameRunningState } = game;
+const { hasGamePristineState, hasGameIntroState, hasGameRunningState, setGameIntroState } = game;
 
 const minOffsetSecBtn = 14;
 const maxOffsetSecBtn = 56;
@@ -86,7 +86,7 @@ export default {
     }, generateRandom(0, 30000));
   },
   methods: {
-    ...mapMutations({ setPreGameState }),
+    ...mapMutations({ setGameIntroState }),
     onShowEnd() {
       this.isSwimming = true;
     },
@@ -94,26 +94,30 @@ export default {
       this.$emit('handleSwimEnd', { id: this.id });
     },
     onMainHit() {
-      if (this.isGamePristineState) {
-        return this.setPreGameState();
+      if (this.hasGamePristineState) {
+        return this.setGameIntroState();
       }
 
       this.isHit = true;
     },
   },
   computed: {
-    ...mapGetters({ isGamePristineState, isPreGameState, isGameRunningState }),
+    ...mapGetters({
+      hasGamePristineState,
+      hasGameIntroState,
+      hasGameRunningState,
+    }),
     satellitesQty() {
       return satellitesQty;
     },
     wrapperClassName() {
-      const { $style, isSwimming, isPreGameState, isGameRunningState } = this;
+      const { $style, isSwimming, hasGameIntroState, hasGameRunningState } = this;
 
       return {
         [$style['wrapper']]: true,
         [$style['is-swimming']]: isSwimming,
-        [$style['is-medium-visible']]: isPreGameState,
-        [$style['is-fully-visible']]: isGameRunningState,
+        [$style['is-medium-visible']]: hasGameIntroState,
+        [$style['is-fully-visible']]: hasGameRunningState,
       };
     },
     innerWrapperClassName() {

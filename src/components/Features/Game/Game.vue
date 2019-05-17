@@ -1,10 +1,12 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <drops-group />
+    <drops-group/>
 
-    <button v-if="isPreGameState" :class="$style['button']" @click="setGameRunningState">
-      Start the Game!
-    </button>
+    <button
+      v-if="hasGameIntroState"
+      :class="$style['button']"
+      @click="setGameCountingState"
+    >Start the Game!</button>
   </div>
 </template>
 
@@ -15,7 +17,7 @@ import { game } from '@/store/game';
 
 import DropsGroup from './DropsGroup/DropsGroup';
 
-const { isPreGameState, setGameRunningState } = game;
+const { hasGameIntroState, setGameCountingState } = game;
 
 export default {
   name: 'Game',
@@ -23,10 +25,10 @@ export default {
     DropsGroup,
   },
   computed: {
-    ...mapGetters({ isPreGameState }),
+    ...mapGetters({ hasGameIntroState }),
   },
   methods: {
-    ...mapMutations({ setGameRunningState }),
+    ...mapMutations({ setGameCountingState }),
   },
 };
 </script>
