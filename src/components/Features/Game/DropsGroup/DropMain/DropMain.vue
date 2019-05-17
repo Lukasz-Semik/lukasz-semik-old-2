@@ -20,7 +20,12 @@
     </div>
 
     <div data-test="inner-wrapper" :class="innerWrapperClassName" @animationend.self="onShowEnd">
-      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit"/>
+      <button
+        data-test="main-button"
+        :class="$style['main-button']"
+        @click="onMainHit"
+        :disabled="hasGameIntroState"
+      />
       <button
         data-test="secondary-button"
         :class="$style['secondary-button']"
@@ -111,12 +116,12 @@ export default {
       return satellitesQty;
     },
     wrapperClassName() {
-      const { $style, isSwimming, hasGameIntroState, hasGameRunningState } = this;
+      const { $style, isSwimming, hasGameRunningState } = this;
 
       return {
         [$style['wrapper']]: true,
         [$style['is-swimming']]: isSwimming,
-        [$style['is-medium-visible']]: hasGameIntroState,
+        // TODO: update classes
         [$style['is-fully-visible']]: hasGameRunningState,
       };
     },
