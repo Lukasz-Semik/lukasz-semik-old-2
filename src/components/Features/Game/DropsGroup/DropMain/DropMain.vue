@@ -39,11 +39,19 @@ export default {
       required: true,
     },
   },
+  watch: {
+    hasGameCountingState(isCounting, wasCounting) {
+      if (isCounting && !wasCounting) {
+        clearTimeout(this.mountTimeoutId);
+      }
+    },
+  },
   data() {
     return {
       isMounted: false,
       isSwimming: false,
       isHit: false,
+      mountTimeoutId: '',
       topOffsetSecondaryBtn: `${generateRandom(14, 56)}%`,
       leftOffsetSecondaryBtn: `${generateRandom(14, 56)}%`,
       leftOffsetSwimWrapper: '0',
@@ -56,7 +64,7 @@ export default {
         ? `calc(${leftOffsetSwimWrapperRandom}% - 5rem)`
         : `${leftOffsetSwimWrapperRandom}%`;
 
-    setTimeout(() => {
+    this.mountTimeoutId = setTimeout(() => {
       this.isMounted = true;
     }, generateRandom(0, 30000));
   },
@@ -91,7 +99,7 @@ export default {
     },
     dropWrapperClassName() {
       const { $style, isMounted, isHit, hasGameCountingState } = this;
-      console.log(hasGameCountingState);
+
       return {
         [$style['drop-wrapper']]: true,
         [$style['is-visible']]: isMounted && !isHit && !hasGameCountingState,

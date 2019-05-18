@@ -22,7 +22,7 @@ import { game } from '@/store/game';
 
 import DropSatellite from './DropSatellite/DropSatellite';
 
-const { hasGameIntroState, hasGameCountingState } = game;
+const { hasGameIntroState, hasGameCountingState, hasGameRunningState } = game;
 
 export default {
   components: {
@@ -44,9 +44,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ hasGameIntroState, hasGameCountingState }),
+    ...mapGetters({ hasGameIntroState, hasGameCountingState, hasGameRunningState }),
     isSatelliteVisible() {
-      return this.isHit ? !this.hasGameIntroState : this.hasGameCountingState && this.isDropMounted;
+      if (this.hasGameRunningState) {
+        return this.isHit;
+      }
+
+      return this.isHit
+        ? !this.hasGameIntroState && !this.hasGameCountingState
+        : this.hasGameCountingState && this.isDropMounted;
     },
   },
 };
