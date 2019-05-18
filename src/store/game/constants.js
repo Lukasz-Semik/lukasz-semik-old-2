@@ -1,6 +1,6 @@
-export const gameStates = {
-  pristine: 'pristine',
-  intro: 'intro',
-  counting: 'counting',
-  running: 'running',
+export const game = {
+  hasPristineState: 'hasPristineState',
+  hasIntroState: 'hasIntroState',
+  hasCountingState: 'hasCountingState',
+  hasRunningState: 'hasRunningState',
 };

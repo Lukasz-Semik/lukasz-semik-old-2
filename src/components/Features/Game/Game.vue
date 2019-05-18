@@ -3,7 +3,7 @@
     <drops-group/>
 
     <button
-      v-if="hasGameIntroState"
+      v-if="shouldShowStartingButton"
       :class="$style['button']"
       @click="setGameCountingState"
     >Start the Game!</button>
@@ -17,7 +17,7 @@ import { game } from '@/store/game';
 
 import DropsGroup from './DropsGroup/DropsGroup';
 
-const { hasGameIntroState, setGameCountingState } = game;
+const { gameState, setGameCountingState } = game;
 
 export default {
   name: 'Game',
@@ -25,7 +25,10 @@ export default {
     DropsGroup,
   },
   computed: {
-    ...mapGetters({ hasGameIntroState }),
+    ...mapGetters({ gameState }),
+    shouldShowStartingButton() {
+      return this.gameState === game.hasIntroState;
+    },
   },
   methods: {
     ...mapMutations({ setGameCountingState }),

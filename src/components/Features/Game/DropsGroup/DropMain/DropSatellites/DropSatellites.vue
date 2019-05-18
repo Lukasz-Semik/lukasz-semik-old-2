@@ -1,12 +1,8 @@
 <template>
-  <div
-    data-test="satellites-wrapper"
-    :class="$style['satellites-wrapper']"
-    :style="{ transform: satellitesRotate }"
-  >
+  <div :class="$style['satellites-wrapper']" :style="{ transform: satellitesRotate }">
     <drop-satellite
-      v-for="satellite in 4"
       data-test="satellite"
+      v-for="satellite in 4"
       :key="satellite"
       :index="satellite"
       :is-visible="isSatelliteVisible"
@@ -15,14 +11,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 import { generateRandom } from '@/helpers/math';
 import { game } from '@/store/game';
 
 import DropSatellite from './DropSatellite/DropSatellite';
-
-const { hasGameIntroState, hasGameCountingState, hasGameRunningState } = game;
 
 export default {
   components: {
@@ -37,6 +29,10 @@ export default {
       type: Boolean,
       required: true,
     },
+    gameState: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
@@ -44,15 +40,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ hasGameIntroState, hasGameCountingState, hasGameRunningState }),
     isSatelliteVisible() {
-      if (this.hasGameRunningState) {
+      if ([game.hasGameRunningState, game.hasPristineState].includes(this.gameState)) {
         return this.isHit;
       }
 
-      return this.isHit
-        ? !this.hasGameIntroState && !this.hasGameCountingState
-        : this.hasGameCountingState && this.isDropMounted;
+      return !this.isHit && this.isDropMounted && this.gameState === game.hasCountingState;
     },
   },
 };

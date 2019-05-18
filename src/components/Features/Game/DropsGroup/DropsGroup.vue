@@ -5,18 +5,20 @@
       data-test="drop"
       :key="drop.id"
       :id="drop.id"
+      :game-state="gameState"
+      :set-game-intro-state="setGameIntroState"
       @handleSwimEnd="onSwimEnd"
     />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import uuid from 'uuid/v4';
 
 import { game } from '@/store/game';
 
-const { hasGameCountingState } = game;
+const { gameState, setGameIntroState } = game;
 
 import DropMain from './DropMain/DropMain';
 
@@ -36,11 +38,12 @@ export default {
     this.drops = new Array(dropsQty).fill(null).map(() => ({ id: uuid() }));
   },
   computed: {
-    ...mapGetters({ hasGameCountingState }),
+    ...mapGetters({ gameState }),
   },
   methods: {
+    ...mapMutations({ setGameIntroState }),
     onSwimEnd({ id }) {
-      if (this.hasGameCountingState) {
+      if (this.gameState === game.hasCountingState) {
         return;
       }
 

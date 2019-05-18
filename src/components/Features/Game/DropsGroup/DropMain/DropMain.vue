@@ -5,7 +5,7 @@
     :style="{ left: leftOffsetSwimWrapper }"
     @animationend.self="onSwimEnd"
   >
-    <drop-satellites :is-hit="isHit" :is-drop-mounted="isMounted"/>
+    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isMounted"/>
 
     <div data-test="drop-wrapper" :class="dropWrapperClassName" @animationend.self="onShowEnd">
       <button data-test="main-button" :class="$style['main-button']" @click="onMainHit"/>
@@ -19,14 +19,10 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
-
 import { generateRandom } from '@/helpers/math';
 import { game } from '@/store/game';
 
 import DropSatellites from './DropSatellites/DropSatellites';
-
-const { hasGamePristineState, hasGameCountingState, setGameIntroState } = game;
 
 export default {
   name: 'DropMain',
@@ -38,10 +34,18 @@ export default {
       type: String,
       required: true,
     },
+    gameState: {
+      type: String,
+      required: true,
+    },
+    setGameIntroState: {
+      type: Function,
+      required: true,
+    },
   },
   watch: {
-    hasGameCountingState(isCounting, wasCounting) {
-      if (isCounting && !wasCounting) {
+    gameState(newState, prevState) {
+      if (newState === game.hasCountingState && prevState === game.hasIntroState) {
         clearTimeout(this.mountTimeoutId);
       }
     },
@@ -69,7 +73,6 @@ export default {
     }, generateRandom(0, 30000));
   },
   methods: {
-    ...mapMutations({ setGameIntroState }),
     onShowEnd() {
       this.isSwimming = true;
     },
@@ -77,7 +80,7 @@ export default {
       this.$emit('handleSwimEnd', { id: this.id });
     },
     onMainHit() {
-      if (this.hasGamePristineState) {
+      if (this.gameState === game.hasPristineState) {
         this.isHit = true;
 
         return this.setGameIntroState();
@@ -85,10 +88,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({
-      hasGamePristineState,
-      hasGameCountingState,
-    }),
     swimWrapperClassName() {
       const { $style, isSwimming } = this;
 
@@ -98,11 +97,11 @@ export default {
       };
     },
     dropWrapperClassName() {
-      const { $style, isMounted, isHit, hasGameCountingState } = this;
+      const { $style, isMounted, isHit, gameState } = this;
 
       return {
         [$style['drop-wrapper']]: true,
-        [$style['is-visible']]: isMounted && !isHit && !hasGameCountingState,
+        [$style['is-visible']]: isMounted && !isHit && !(gameState === game.hasCountingState),
       };
     },
   },

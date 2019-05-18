@@ -1,4 +1,4 @@
-import { gameStates } from './constants';
+import { game } from './constants';
 
 export const names = {
   setGameIntroState: 'setGameIntroState',
@@ -8,12 +8,12 @@ export const names = {
 
 export default {
   [names.setGameIntroState]: state => {
-    state.gameState = gameStates.intro;
+    state.gameState = game.hasIntroState;
   },
   [names.setGameCountingState]: state => {
-    state.gameState = gameStates.counting;
+    state.gameState = game.hasCountingState;
   },
   [names.setGameRunningState]: state => {
-    state.gameState = gameStates.running;
+    state.gameState = game.hasRunningState;
   },
 };

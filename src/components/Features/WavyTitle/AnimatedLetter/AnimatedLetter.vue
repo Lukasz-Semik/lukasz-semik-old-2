@@ -18,7 +18,7 @@ import { generateRandom } from '@/helpers/math';
 
 import LetterContent from './LetterContent/LetterContent';
 
-const { hasGamePristineState } = game;
+const { gameState } = game;
 
 export default {
   name: 'AnimatedLetter',
@@ -41,7 +41,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ hasGamePristineState }),
+    ...mapGetters({ gameState }),
     animationDelay() {
       return -this.index / 5;
     },
@@ -54,11 +54,11 @@ export default {
       };
     },
     innerWrapperClassName() {
-      const { $style, hasGamePristineState } = this;
+      const { $style, gameState } = this;
 
       return {
         [$style['inner-wrapper']]: true,
-        [$style['is-fallen']]: !hasGamePristineState,
+        [$style['is-fallen']]: !(gameState === game.hasPristineState),
       };
     },
   },

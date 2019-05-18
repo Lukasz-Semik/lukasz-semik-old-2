@@ -4,7 +4,7 @@ import { findAllByTestAttr } from '@/helpers/tests';
 
 import DropsGroup from './DropsGroup';
 
-describe('<DropsGroup />', () => {
+describe.skip('<DropsGroup />', () => {
   const wrapper = shallowMount(DropsGroup);
 
   it('should render 40 drops', () => {
