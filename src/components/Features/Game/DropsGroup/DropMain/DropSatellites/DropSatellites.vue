@@ -9,15 +9,20 @@
       data-test="satellite"
       :key="satellite"
       :index="satellite"
-      :is-visible="isHit"
+      :is-visible="isSatelliteVisible"
     />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import { generateRandom } from '@/helpers/math';
+import { game } from '@/store/game';
 
 import DropSatellite from './DropSatellite/DropSatellite';
+
+const { hasGameIntroState, hasGameCountingState } = game;
 
 export default {
   components: {
@@ -28,11 +33,21 @@ export default {
       type: Boolean,
       required: true,
     },
+    isDropMounted: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
       satellitesRotate: `rotate(${generateRandom(1, 360)}deg)`,
     };
+  },
+  computed: {
+    ...mapGetters({ hasGameIntroState, hasGameCountingState }),
+    isSatelliteVisible() {
+      return this.isHit ? !this.hasGameIntroState : this.hasGameCountingState && this.isDropMounted;
+    },
   },
 };
 </script>

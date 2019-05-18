@@ -2,10 +2,10 @@
   <div
     data-test="swim-wrapper"
     :class="swimWrapperClassName"
-    :style="{ left: leftOffsetAll }"
+    :style="{ left: leftOffsetSwimWrapper }"
     @animationend.self="onSwimEnd"
   >
-    <drop-satellites :isHit="isHit"/>
+    <drop-satellites :is-hit="isHit" :is-drop-mounted="isMounted"/>
 
     <div data-test="drop-wrapper" :class="dropWrapperClassName" @animationend.self="onShowEnd">
       <button data-test="main-button" :class="$style['main-button']" @click="onMainHit"/>
@@ -26,7 +26,7 @@ import { game } from '@/store/game';
 
 import DropSatellites from './DropSatellites/DropSatellites';
 
-const { hasGamePristineState, setGameIntroState } = game;
+const { hasGamePristineState, hasGameCountingState, setGameIntroState } = game;
 
 export default {
   name: 'DropMain',
@@ -46,16 +46,15 @@ export default {
       isHit: false,
       topOffsetSecondaryBtn: `${generateRandom(14, 56)}%`,
       leftOffsetSecondaryBtn: `${generateRandom(14, 56)}%`,
-      leftOffsetAllRandom: '0',
-      leftOffsetAll: '0',
+      leftOffsetSwimWrapper: '0',
     };
   },
   created() {
-    const leftOffsetAllRandom = generateRandom(3, 97);
-    this.leftOffsetAll =
-      leftOffsetAllRandom >= 90
-        ? `calc(${leftOffsetAllRandom}% - 5rem)`
-        : `${leftOffsetAllRandom}%`;
+    const leftOffsetSwimWrapperRandom = generateRandom(3, 97);
+    this.leftOffsetSwimWrapper =
+      leftOffsetSwimWrapperRandom >= 90
+        ? `calc(${leftOffsetSwimWrapperRandom}% - 5rem)`
+        : `${leftOffsetSwimWrapperRandom}%`;
 
     setTimeout(() => {
       this.isMounted = true;
@@ -80,6 +79,7 @@ export default {
   computed: {
     ...mapGetters({
       hasGamePristineState,
+      hasGameCountingState,
     }),
     swimWrapperClassName() {
       const { $style, isSwimming } = this;
@@ -90,11 +90,11 @@ export default {
       };
     },
     dropWrapperClassName() {
-      const { $style, isMounted, isHit } = this;
-
+      const { $style, isMounted, isHit, hasGameCountingState } = this;
+      console.log(hasGameCountingState);
       return {
         [$style['drop-wrapper']]: true,
-        [$style['is-visible']]: isMounted && !isHit,
+        [$style['is-visible']]: isMounted && !isHit && !hasGameCountingState,
       };
     },
   },

@@ -11,7 +11,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import uuid from 'uuid/v4';
+
+import { game } from '@/store/game';
+
+const { hasGameCountingState } = game;
 
 import DropMain from './DropMain/DropMain';
 
@@ -30,8 +35,15 @@ export default {
   created() {
     this.drops = new Array(dropsQty).fill(null).map(() => ({ id: uuid() }));
   },
+  computed: {
+    ...mapGetters({ hasGameCountingState }),
+  },
   methods: {
     onSwimEnd({ id }) {
+      if (this.hasGameCountingState) {
+        return;
+      }
+
       this.drops = this.drops.map(drop => (drop.id === id ? { id: uuid() } : drop));
     },
   },
