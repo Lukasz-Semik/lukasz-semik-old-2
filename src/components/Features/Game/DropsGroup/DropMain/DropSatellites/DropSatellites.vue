@@ -41,11 +41,15 @@ export default {
   },
   computed: {
     isSatelliteVisible() {
-      if ([game.hasGameRunningState, game.hasPristineState].includes(this.gameState)) {
-        return this.isHit;
+      if (this.gameState === game.hasCountingState) {
+        return !this.isHit && this.isDropMounted;
       }
 
-      return !this.isHit && this.isDropMounted && this.gameState === game.hasCountingState;
+      if (this.gameState === game.hasRunningState) {
+        return this.isHit && this.isDropMounted;
+      }
+
+      return false;
     },
   },
 };
