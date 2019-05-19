@@ -5,10 +5,10 @@
     :style="{ left: leftOffsetSwimWrapper }"
     @animationend.self="onSwimEnd"
   >
-    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isMounted"/>
+    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isMounted" />
 
     <div data-test="drop-wrapper" :class="dropWrapperClassName" @animationend.self="onShowEnd">
-      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit"/>
+      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit" />
       <button
         data-test="secondary-button"
         :class="$style['secondary-button']"

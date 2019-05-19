@@ -1,12 +1,10 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <drops-group/>
+    <drops-group />
 
-    <button
-      v-if="shouldShowStartingButton"
-      :class="$style['button']"
-      @click="setGameCountingState"
-    >Start the Game!</button>
+    <button v-if="shouldShowStartingButton" :class="$style['button']" @click="setGameCountingState">
+      Start the Game!
+    </button>
   </div>
 </template>
 

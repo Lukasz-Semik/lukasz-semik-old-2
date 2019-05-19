@@ -5,7 +5,7 @@
     :class="wrapperClassName"
   >
     <div :class="innerWrapperClassName" :style="{ transition: `all ${fallingTime} ease` }">
-      <letter-content :letter="letter" :delay="(index * 600) / 5"/>
+      <letter-content :letter="letter" :delay="(index * 600) / 5" />
     </div>
   </div>
 </template>
