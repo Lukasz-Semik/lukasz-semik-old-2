@@ -17,6 +17,7 @@ import { game } from '@/store/game';
 import DropSatellite from './DropSatellite/DropSatellite';
 
 export default {
+  name: 'DropSatellites',
   components: {
     DropSatellite,
   },
