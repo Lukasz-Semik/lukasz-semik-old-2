@@ -2,14 +2,23 @@
   <div
     data-test="animated-letter"
     :style="{ animationDelay: `${animationDelay}s` }"
-    :class="className"
+    :class="wrapperClassName"
   >
-    <letter-content :letter="letter" :delay="(index * 600) / 5" />
+    <div :class="innerWrapperClassName" :style="{ transition: `all ${fallingTime} ease` }">
+      <letter-content :letter="letter" :delay="(index * 600) / 5" />
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
+import { game } from '@/store/game';
+import { generateRandom } from '@/helpers/math';
+
 import LetterContent from './LetterContent/LetterContent';
+
+const { gameState } = game;
 
 export default {
   name: 'AnimatedLetter',
@@ -26,16 +35,30 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      fallingTime: `${generateRandom(0, 3)}.${generateRandom(1, 9)}s`,
+    };
+  },
   computed: {
+    ...mapGetters({ gameState }),
     animationDelay() {
       return -this.index / 5;
     },
-    className() {
-      const { $style } = this;
+    wrapperClassName() {
+      const { $style, letter } = this;
 
       return {
         [$style['wrapper']]: true,
-        [$style['wavy-move-animation']]: Boolean(this.letter.trim()),
+        [$style['wavy-move-animation']]: Boolean(letter.trim()),
+      };
+    },
+    innerWrapperClassName() {
+      const { $style, gameState } = this;
+
+      return {
+        [$style['inner-wrapper']]: true,
+        [$style['is-fallen']]: !(gameState === game.hasPristineState),
       };
     },
   },

@@ -6,12 +6,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 import BackgroundUnderwater from '@/assets/backgrounds/background-uderwater.svg';
-import { game } from '@/store/game';
-
-const { isPreGameState, isGameRunningState } = game;
 
 export default {
   name: 'BackgroundElement',
@@ -19,14 +14,11 @@ export default {
     BackgroundUnderwater,
   },
   computed: {
-    ...mapGetters({ isPreGameState, isGameRunningState }),
     overlayClassName() {
-      const { $style, isPreGameState, isGameRunningState } = this;
+      const { $style } = this;
 
       return {
         [$style['overlay']]: true,
-        [$style['has-medium-opacity']]: isPreGameState,
-        [$style['has-no-opacity']]: isGameRunningState,
       };
     },
   },

@@ -1,25 +1,13 @@
 <template>
   <div
-    data-test="wrapper"
-    :class="wrapperClassName"
-    :style="{ left: leftOffsetAll }"
+    data-test="swim-wrapper"
+    :class="swimWrapperClassName"
+    :style="{ left: leftOffsetSwimWrapper }"
     @animationend.self="onSwimEnd"
   >
-    <div
-      data-test="satellites-wrapper"
-      :class="$style['satellites-wrapper']"
-      :style="{ transform: satellitesRotate }"
-    >
-      <drop-satellite
-        v-for="satellite in satellitesQty"
-        data-test="satellite"
-        :key="satellite"
-        :index="satellite"
-        :is-visible="isHit"
-      />
-    </div>
+    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isMounted" />
 
-    <div data-test="inner-wrapper" :class="innerWrapperClassName" @animationend.self="onShowEnd">
+    <div data-test="drop-wrapper" :class="dropWrapperClassName" @animationend.self="onShowEnd">
       <button data-test="main-button" :class="$style['main-button']" @click="onMainHit" />
       <button
         data-test="secondary-button"
@@ -31,30 +19,35 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
-
 import { generateRandom } from '@/helpers/math';
 import { game } from '@/store/game';
 
-import DropSatellite from '../DropSatellite/DropSatellite';
-
-const { isGamePristineState, setPreGameState, isPreGameState, isGameRunningState } = game;
-
-const minOffsetSecBtn = 14;
-const maxOffsetSecBtn = 56;
-const minOffsetAll = 3;
-const maxOffsetAll = 97;
-const satellitesQty = 4;
+import DropSatellites from './DropSatellites/DropSatellites';
 
 export default {
   name: 'DropMain',
   components: {
-    DropSatellite,
+    DropSatellites,
   },
   props: {
     id: {
       type: String,
       required: true,
+    },
+    gameState: {
+      type: String,
+      required: true,
+    },
+    setGameIntroState: {
+      type: Function,
+      required: true,
+    },
+  },
+  watch: {
+    gameState(newState, prevState) {
+      if (newState === game.hasCountingState && prevState === game.hasIntroState) {
+        clearTimeout(this.mountTimeoutId);
+      }
     },
   },
   data() {
@@ -62,31 +55,24 @@ export default {
       isMounted: false,
       isSwimming: false,
       isHit: false,
-      topOffsetSecondaryBtn: '0',
-      leftOffsetSecondaryBtn: '0',
-      leftOffsetAllRandom: '0',
-      leftOffsetAll: '0',
-      satellitesRotate: '0',
+      mountTimeoutId: '',
+      topOffsetSecondaryBtn: `${generateRandom(14, 56)}%`,
+      leftOffsetSecondaryBtn: `${generateRandom(14, 56)}%`,
+      leftOffsetSwimWrapper: '0',
     };
   },
   created() {
-    this.topOffsetSecondaryBtn = `${generateRandom(minOffsetSecBtn, maxOffsetSecBtn)}%`;
-    this.leftOffsetSecondaryBtn = `${generateRandom(minOffsetSecBtn, maxOffsetSecBtn)}%`;
+    const leftOffsetSwimWrapperRandom = generateRandom(3, 97);
+    this.leftOffsetSwimWrapper =
+      leftOffsetSwimWrapperRandom >= 90
+        ? `calc(${leftOffsetSwimWrapperRandom}% - 5rem)`
+        : `${leftOffsetSwimWrapperRandom}%`;
 
-    const leftOffsetAllRandom = generateRandom(minOffsetAll, maxOffsetAll);
-    this.leftOffsetAll =
-      leftOffsetAllRandom >= 90
-        ? `calc(${leftOffsetAllRandom}% - 5rem)`
-        : `${leftOffsetAllRandom}%`;
-
-    this.satellitesRotate = `rotate(${generateRandom(1, 360)}deg)`;
-
-    setTimeout(() => {
+    this.mountTimeoutId = setTimeout(() => {
       this.isMounted = true;
     }, generateRandom(0, 30000));
   },
   methods: {
-    ...mapMutations({ setPreGameState }),
     onShowEnd() {
       this.isSwimming = true;
     },
@@ -94,35 +80,28 @@ export default {
       this.$emit('handleSwimEnd', { id: this.id });
     },
     onMainHit() {
-      if (this.isGamePristineState) {
-        return this.setPreGameState();
-      }
+      if (this.gameState === game.hasPristineState) {
+        this.isHit = true;
 
-      this.isHit = true;
+        return this.setGameIntroState();
+      }
     },
   },
   computed: {
-    ...mapGetters({ isGamePristineState, isPreGameState, isGameRunningState }),
-    satellitesQty() {
-      return satellitesQty;
-    },
-    wrapperClassName() {
-      const { $style, isSwimming, isPreGameState, isGameRunningState } = this;
+    swimWrapperClassName() {
+      const { $style, isSwimming } = this;
 
       return {
-        [$style['wrapper']]: true,
+        [$style['swim-wrapper']]: true,
         [$style['is-swimming']]: isSwimming,
-        [$style['is-medium-visible']]: isPreGameState,
-        [$style['is-fully-visible']]: isGameRunningState,
       };
     },
-    innerWrapperClassName() {
-      const { $style, isMounted, isHit } = this;
+    dropWrapperClassName() {
+      const { $style, isMounted, isHit, gameState } = this;
 
       return {
-        [$style['inner-wrapper']]: true,
-        [$style['is-visible']]: isMounted && !isHit,
-        [$style['is-hit']]: isHit,
+        [$style['drop-wrapper']]: true,
+        [$style['is-visible']]: isMounted && !isHit && !(gameState === game.hasCountingState),
       };
     },
   },

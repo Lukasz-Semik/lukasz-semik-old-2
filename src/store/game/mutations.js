@@ -1,13 +1,19 @@
+import { game } from './constants';
+
 export const names = {
-  setPreGameState: 'setPreGameState',
+  setGameIntroState: 'setGameIntroState',
+  setGameCountingState: 'setGameCountingState',
   setGameRunningState: 'setGameRunningState',
 };
 
 export default {
-  [names.setPreGameState]: state => {
-    state.gameState = 'pre-game';
+  [names.setGameIntroState]: state => {
+    state.gameState = game.hasIntroState;
+  },
+  [names.setGameCountingState]: state => {
+    state.gameState = game.hasCountingState;
   },
   [names.setGameRunningState]: state => {
-    state.gameState = 'running';
+    state.gameState = game.hasRunningState;
   },
 };

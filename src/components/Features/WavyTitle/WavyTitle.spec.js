@@ -4,7 +4,7 @@ import { findAllByTestAttr } from '@/helpers/tests';
 
 import WavyTitle from './WavyTitle';
 
-describe('<WaveyTitle />', () => {
+describe.skip('<WaveyTitle />', () => {
   const text = 'some.text';
   const wrapper = mount(WavyTitle, {
     mocks: {

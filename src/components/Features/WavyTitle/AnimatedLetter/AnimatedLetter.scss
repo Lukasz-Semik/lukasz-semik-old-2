@@ -1,11 +1,20 @@
 .wrapper {
   position: relative;
   min-width: 1rem;
+
+  &.wavy-move-animation {
+    transform: translateY(-5%);
+    animation: wavy-move 2s alternate infinite ease-in-out;
+  }
 }
 
-.wavy-move-animation {
-  transform: translateY(-5%);
-  animation: wavy-move 2s alternate infinite ease-in-out;
+.inner-wrapper {
+  opacity: 1;
+
+  &.is-fallen {
+    opacity: 0;
+    transform: translateY(100%);
+  }
 }
 
 @keyframes wavy-move {
