@@ -1,0 +1,8 @@
+.inner-wrapper {
+  opacity: 1;
+
+  &.is-fallen {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
