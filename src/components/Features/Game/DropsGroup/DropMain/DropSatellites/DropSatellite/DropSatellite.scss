@@ -19,12 +19,12 @@ $radius-max: -60px;
     }
 
     50% {
-      opacity: inherit;
+      opacity: 0.5;
       transform: scale(1.3), translate($translation-x, $translation-y);
     }
 
     75% {
-      opacity: inherit;
+      opacity: 0.5;
     }
 
     100% {

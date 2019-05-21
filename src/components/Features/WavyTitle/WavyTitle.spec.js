@@ -1,12 +1,12 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 import { findAllByTestAttr } from '@/helpers/tests';
 
 import WavyTitle from './WavyTitle';
 
-describe.skip('<WaveyTitle />', () => {
+describe('<WaveyTitle />', () => {
   const text = 'some.text';
-  const wrapper = mount(WavyTitle, {
+  const wrapper = shallowMount(WavyTitle, {
     mocks: {
       $t: key => key,
     },
