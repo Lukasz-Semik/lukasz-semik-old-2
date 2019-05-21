@@ -4,7 +4,11 @@
     :style="{ animationDelay: `${animationDelay}s` }"
     :class="wrapperClassName"
   >
-    <div :class="innerWrapperClassName" :style="{ transition: `all ${fallingTime} ease` }">
+    <div
+      data-test="inner-wrapper"
+      :class="innerWrapperClassName"
+      :style="{ transition: `all ${fallingTime} ease` }"
+    >
       <letter-content :letter="letter" :delay="(index * 600) / 5" />
     </div>
   </div>

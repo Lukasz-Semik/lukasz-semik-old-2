@@ -5,21 +5,30 @@
     :style="{ left: leftOffsetSwimWrapper }"
     @animationend.self="onSwimEnd"
   >
-    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isMounted" />
+    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isSwimming" />
 
-    <div data-test="drop-wrapper" :class="dropWrapperClassName" @animationend.self="onShowEnd">
-      <button data-test="main-button" :class="$style['main-button']" @click="onMainHit" />
-      <button
-        data-test="secondary-button"
-        :class="$style['secondary-button']"
-        :style="{ top: topOffsetSecondaryBtn, left: leftOffsetSecondaryBtn }"
-      />
+    <div
+      data-test="showing-wrapper"
+      :class="showingWrapperClassName"
+      :style="{ animationDelay: showDelay }"
+      @animationend.self="onShowEnd"
+    >
+      <div data-test="drop" :class="dropClassName">
+        <button data-test="main-button" :class="$style['main-button']" @click="onMainClick" />
+        <button
+          data-test="secondary-button"
+          :class="$style['secondary-button']"
+          :style="{ top: topOffsetSecondaryBtn, left: leftOffsetSecondaryBtn }"
+          @click="onSecondaryClick"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { generateRandom } from '@/helpers/math';
+
 import { game } from '@/store/game';
 
 import DropSatellites from './DropSatellites/DropSatellites';
@@ -43,22 +52,14 @@ export default {
       required: true,
     },
   },
-  watch: {
-    gameState(newState, prevState) {
-      if (newState === game.hasCountingState && prevState === game.hasIntroState) {
-        clearTimeout(this.mountTimeoutId);
-      }
-    },
-  },
   data() {
     return {
-      isMounted: false,
-      isSwimming: false,
       isHit: false,
-      mountTimeoutId: '',
+      isSwimming: false,
+      leftOffsetSwimWrapper: '0',
       topOffsetSecondaryBtn: `${generateRandom(14, 56)}%`,
       leftOffsetSecondaryBtn: `${generateRandom(14, 56)}%`,
-      leftOffsetSwimWrapper: '0',
+      showDelay: `${generateRandom(0, 30)}.${generateRandom(0, 9)}s`,
     };
   },
   created() {
@@ -67,41 +68,55 @@ export default {
       leftOffsetSwimWrapperRandom >= 90
         ? `calc(${leftOffsetSwimWrapperRandom}% - 5rem)`
         : `${leftOffsetSwimWrapperRandom}%`;
-
-    this.mountTimeoutId = setTimeout(() => {
-      this.isMounted = true;
-    }, generateRandom(0, 30000));
   },
   methods: {
-    onShowEnd() {
-      this.isSwimming = true;
-    },
-    onSwimEnd() {
-      this.$emit('handleSwimEnd', { id: this.id });
-    },
-    onMainHit() {
-      if (this.gameState === game.hasPristineState) {
+    onMainClick() {
+      if (this.gameState === game.hasPristineState && !this.isHit && this.isSwimming) {
         this.isHit = true;
 
         return this.setGameIntroState();
       }
     },
+    onSecondaryClick() {
+      if (this.gameState === game.hasPristineState && !this.isHit && this.isSwimming) {
+        this.isHit = true;
+
+        return this.setGameIntroState();
+      }
+    },
+    onShowEnd() {
+      this.isSwimming = true;
+    },
+    onSwimEnd() {
+      this.$emit('handleSwimEnd', { id: this.id, isHit: this.isHit });
+    },
   },
   computed: {
     swimWrapperClassName() {
-      const { $style, isSwimming } = this;
+      const { $style, isHit, isSwimming } = this;
 
       return {
         [$style['swim-wrapper']]: true,
+        [$style['has-index-smaller']]: isHit,
         [$style['is-swimming']]: isSwimming,
       };
     },
-    dropWrapperClassName() {
-      const { $style, isMounted, isHit, gameState } = this;
+    showingWrapperClassName() {
+      const { $style, isSwimming, gameState } = this;
 
       return {
-        [$style['drop-wrapper']]: true,
-        [$style['is-visible']]: isMounted && !isHit && !(gameState === game.hasCountingState),
+        [$style['showing-wrapper']]: true,
+        [$style['has-showing-animation']]: gameState === game.hasCountingState ? isSwimming : true,
+      };
+    },
+    dropClassName() {
+      const { $style, isHit, gameState } = this;
+
+      return {
+        [$style['drop']]: true,
+        [$style['is-hidden']]: isHit || gameState === game.hasCountingState,
+        [$style['is-disabled']]:
+          isHit || [game.hasCountingState, game.hasIntroState].includes(gameState),
       };
     },
   },
