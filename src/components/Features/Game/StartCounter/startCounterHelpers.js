@@ -11,7 +11,7 @@ export const prepareLetters = sentence => {
 
   let isLastMarked = false;
 
-  const pr = fallingDelays.map((delay, index) => {
+  return fallingDelays.map((delay, index) => {
     const isLast = !isLastMarked && delay === maxValue;
 
     if (isLast) {
@@ -24,8 +24,4 @@ export const prepareLetters = sentence => {
       isLast,
     };
   });
-
-  console.log(pr);
-
-  return pr;
 };

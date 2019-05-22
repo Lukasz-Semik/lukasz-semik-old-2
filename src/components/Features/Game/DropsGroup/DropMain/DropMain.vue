@@ -111,6 +111,7 @@ export default {
       return {
         [$style['showing-wrapper']]: true,
         [$style['has-showing-animation']]: gameState === game.hasCountingState ? isSwimming : true,
+        [$style['has-full-visible-showing-animation']]: gameState === game.hasRunningState,
       };
     },
     dropClassName() {

@@ -10,12 +10,7 @@
       <p key="3" v-if="counter === 3">3</p>
       <p key="2" v-if="counter === 2">2</p>
       <p key="1" v-if="counter === 1">1</p>
-      <p
-        key="start"
-        :class="$style['start-text']"
-        v-if="counter === 0"
-        @transitionend.self="isFallen = true"
-      >
+      <p key="start" :class="$style['start-text']" v-if="counter === 0">
         <falling-element
           v-for="(letter, i) in letters"
           :key="`${letter.content}-${i}`"
@@ -55,7 +50,11 @@ export default {
   methods: {
     ...mapMutations({ setGameRunningState }),
     onAfterEnter() {
-      if (this.counter === 0) return;
+      if (this.counter === 0) {
+        this.isFallen = true;
+        return;
+      }
+
       this.counter = this.counter - 1;
     },
     onLastFallen() {
