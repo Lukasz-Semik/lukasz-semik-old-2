@@ -49,30 +49,4 @@ describe('<AnimatedLetter>', () => {
     expect(animatedWrapper.attributes('style')).toBe('animation-delay: 0s;');
     expect(animatedWrapper.classes()).not.toContain('wavy-move-animation');
   });
-
-  it('should render inner wrapper without is-fallen class if game.hasPristineState', () => {
-    const wrapper = shallowMount(AnimatedLetter, {
-      propsData: {
-        index: 0,
-        letter: 'a',
-      },
-      store: createStore(),
-      localVue,
-    });
-
-    expect(findByTestAttr(wrapper, 'inner-wrapper').classes()).not.toContain('is-fallen');
-  });
-
-  it('should render inner wrapper with is-fallen class if game.hasIntroState', () => {
-    const wrapper = shallowMount(AnimatedLetter, {
-      propsData: {
-        index: 0,
-        letter: 'a',
-      },
-      store: createStore(game.hasIntroState),
-      localVue,
-    });
-
-    expect(findByTestAttr(wrapper, 'inner-wrapper').classes()).toContain('is-fallen');
-  });
 });

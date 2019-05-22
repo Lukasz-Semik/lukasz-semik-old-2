@@ -1,5 +1,9 @@
 <template>
-  <div :class="className" :style="{ transition: `all ${fallingTime} ease` }">
+  <div
+    :class="className"
+    :style="{ transition: `all ${fallingTime} ease` }"
+    @transitionend.self="onFallingEnd"
+  >
     <slot/>
   </div>
 </template>
@@ -14,11 +18,26 @@ export default {
       type: Boolean,
       required: true,
     },
+    fallingTime: {
+      type: String,
+      default: '',
+    },
+    isLast: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
-      fallingTime: `${generateRandom(0, 3)}.${generateRandom(1, 9)}s`,
+      fallingDruation: this.fallingTime || `${generateRandom(0, 3)}.${generateRandom(1, 9)}s`,
     };
+  },
+  methods: {
+    onFallingEnd() {
+      if (this.isLast) {
+        this.$emit('handleLastFallen');
+      }
+    },
   },
   computed: {
     className() {
