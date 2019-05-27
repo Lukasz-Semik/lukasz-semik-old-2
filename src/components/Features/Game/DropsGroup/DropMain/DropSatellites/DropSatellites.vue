@@ -50,7 +50,7 @@ export default {
       return false;
     },
     isFullyVisible() {
-      return this.isHit && this.gameState === game.hasRunningState;
+      return this.isHit && this.isDropMounted && this.gameState === game.hasRunningState;
     },
   },
 };
