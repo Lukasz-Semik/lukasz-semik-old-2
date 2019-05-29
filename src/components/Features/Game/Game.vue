@@ -2,6 +2,8 @@
   <div :class="[$style['wrapper']]">
     <drops-group />
 
+    <health-bar />
+
     <start-counter />
 
     <button v-if="shouldShowStartingButton" :class="$style['button']" @click="setGameCountingState">
@@ -17,6 +19,7 @@ import { game } from '@/store/game';
 
 import DropsGroup from './DropsGroup/DropsGroup';
 import StartCounter from './StartCounter/StartCounter';
+import HealthBar from './HealthBar/HealthBar';
 
 const { gameState, setGameCountingState } = game;
 
@@ -25,6 +28,7 @@ export default {
   components: {
     DropsGroup,
     StartCounter,
+    HealthBar,
   },
   computed: {
     ...mapGetters({ gameState }),

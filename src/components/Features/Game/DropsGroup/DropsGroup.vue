@@ -18,7 +18,7 @@ import uuid from 'uuid/v4';
 
 import { game } from '@/store/game';
 
-const { gameState, setGameIntroState } = game;
+const { gameState, substractHealthPoints, setGameIntroState } = game;
 
 import DropMain from './DropMain/DropMain';
 
@@ -28,13 +28,6 @@ export default {
   name: 'DropsGroup',
   components: {
     DropMain,
-  },
-  watch: {
-    gameState(newVal) {
-      if (newVal === game.hasRunningState) {
-        this.drops = new Array(dropsQty).fill(null).map(() => ({ id: uuid() }));
-      }
-    },
   },
   data() {
     return {
@@ -48,10 +41,14 @@ export default {
     ...mapGetters({ gameState }),
   },
   methods: {
-    ...mapMutations({ setGameIntroState }),
-    onSwimEnd({ id }) {
+    ...mapMutations({ setGameIntroState, substractHealthPoints }),
+    onSwimEnd({ id, isHit }) {
       if (this.gameState === game.hasCountingState) {
         return;
+      }
+
+      if (this.gameState === game.hasRunningState && !isHit) {
+        this.substractHealthPoints();
       }
 
       this.drops = this.drops.map(drop => (drop.id === id ? { id: uuid() } : drop));
