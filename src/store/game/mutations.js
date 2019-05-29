@@ -18,7 +18,7 @@ export default {
     state.gameState = game.hasRunningState;
   },
   [names.substractHealthPoints]: state => {
-    if (state.healthPoints - 1 < 1) {
+    if (state.healthPoints === 1) {
       state.gameState = game.hasOverState;
     }
 
