@@ -6,6 +6,7 @@ import { game as gameStates } from './constants';
 
 const state = {
   gameState: gameStates.hasPristineState,
+  healthPoints: 100,
 };
 
 export default {

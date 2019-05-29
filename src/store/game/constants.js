@@ -3,4 +3,5 @@ export const game = {
   hasIntroState: 'hasIntroState',
   hasCountingState: 'hasCountingState',
   hasRunningState: 'hasRunningState',
+  hasOverState: 'hasOverState',
 };
