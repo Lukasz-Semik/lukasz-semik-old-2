@@ -5,21 +5,14 @@
     :class="wrapperClassName"
   >
     <falling-element :is-fallen="isFallen">
-      <letter-content :letter="letter" :delay="(index * 600) / 5"/>
+      <letter-content :letter="letter" :delay="(index * 600) / 5" />
     </falling-element>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
-import { game } from '@/store/game';
-import { generateRandom } from '@/helpers/math';
-
 import { FallingElement } from '@/components/Elements';
 import LetterContent from './LetterContent/LetterContent';
-
-const { gameState } = game;
 
 export default {
   name: 'AnimatedLetter',
@@ -36,14 +29,12 @@ export default {
       type: String,
       required: true,
     },
-  },
-  data() {
-    return {
-      fallingTime: `${generateRandom(0, 3)}.${generateRandom(1, 9)}s`,
-    };
+    isFallen: {
+      type: Boolean,
+      required: true,
+    },
   },
   computed: {
-    ...mapGetters({ gameState }),
     animationDelay() {
       return -this.index / 5;
     },
@@ -54,9 +45,6 @@ export default {
         [$style['wrapper']]: true,
         [$style['wavy-move-animation']]: Boolean(letter.trim()),
       };
-    },
-    isFallen() {
-      return this.gameState !== game.hasPristineState;
     },
   },
 };

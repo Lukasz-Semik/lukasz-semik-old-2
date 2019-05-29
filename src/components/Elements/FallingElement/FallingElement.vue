@@ -1,10 +1,11 @@
 <template>
   <div
+    data-test="wrapper"
     :class="className"
-    :style="{ transition: `all ${fallingTime} ease` }"
+    :style="{ transition: `all ${fallingDruation} ease` }"
     @transitionend.self="onFallingEnd"
   >
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -44,7 +45,7 @@ export default {
       const { $style, isFallen } = this;
 
       return {
-        [$style['inner-wrapper']]: true,
+        [$style['wrapper']]: true,
         [$style['is-fallen']]: isFallen,
       };
     },

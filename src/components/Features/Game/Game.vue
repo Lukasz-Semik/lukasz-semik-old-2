@@ -1,14 +1,12 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <drops-group/>
+    <drops-group />
 
-    <start-counter v-if="shouldShowStartCounter"/>
+    <start-counter />
 
-    <button
-      v-if="shouldShowStartingButton"
-      :class="$style['button']"
-      @click="setGameCountingState"
-    >Start the Game!</button>
+    <button v-if="shouldShowStartingButton" :class="$style['button']" @click="setGameCountingState">
+      Start the Game!
+    </button>
   </div>
 </template>
 
@@ -32,9 +30,6 @@ export default {
     ...mapGetters({ gameState }),
     shouldShowStartingButton() {
       return this.gameState === game.hasIntroState;
-    },
-    shouldShowStartCounter() {
-      return this.gameState === game.hasCountingState;
     },
   },
   methods: {

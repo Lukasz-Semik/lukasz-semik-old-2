@@ -1,7 +1,7 @@
 <template>
   <div :class="$style['background']">
-    <background-underwater/>
-    <div :class="overlayClassName"/>
+    <background-underwater />
+    <div :class="overlayClassName" />
   </div>
 </template>
 

@@ -1,8 +1,12 @@
-import { max } from 'lodash';
+import { max, isEmpty, isString } from 'lodash';
 
 import { generateRandom } from '@/helpers/math';
 
 export const prepareLetters = sentence => {
+  if (isEmpty(sentence) || !isString(sentence)) {
+    return [];
+  }
+
   const letters = sentence.split('');
   const fallingDelays = new Array(letters.length)
     .fill(null)

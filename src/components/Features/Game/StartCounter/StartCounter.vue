@@ -1,24 +1,29 @@
 <template>
-  <div :class="[$style['wrapper']]">
+  <div v-if="isVisible" :class="[$style['wrapper']]">
     <transition
+      data-test="transition-wrapper"
       appear
       mode="out-in"
       :enter-active-class="$style['enter-active']"
       :enter-class="$style['enter']"
       @after-enter="onAfterEnter"
     >
-      <p key="3" v-if="counter === 3">3</p>
-      <p key="2" v-if="counter === 2">2</p>
-      <p key="1" v-if="counter === 1">1</p>
+      <p data-test="counter-3" key="3" v-if="counter === 3">3</p>
+      <p data-test="counter-2" key="2" v-if="counter === 2">2</p>
+      <p data-test="counter-1" key="1" v-if="counter === 1">1</p>
+
       <p key="start" :class="$style['start-text']" v-if="counter === 0">
         <falling-element
+          data-test="falling-element"
           v-for="(letter, i) in letters"
           :key="`${letter.content}-${i}`"
           :is-fallen="isFallen"
           :falling-time="letter.delay"
           :is-last="letter.isLast"
           @handleLastFallen="onLastFallen"
-        >{{ letter.content }}</falling-element>
+        >
+          {{ letter.content }}
+        </falling-element>
       </p>
     </transition>
   </div>
@@ -65,6 +70,9 @@ export default {
   },
   computed: {
     ...mapGetters({ gameState }),
+    isVisible() {
+      return this.gameState == game.hasCountingState;
+    },
   },
 };
 </script>

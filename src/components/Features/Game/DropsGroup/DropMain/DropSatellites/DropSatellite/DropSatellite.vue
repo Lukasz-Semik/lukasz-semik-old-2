@@ -1,5 +1,5 @@
 <template>
-  <button v-if="isVisible" data-test="satellite" :class="className" @click="onHit"/>
+  <button v-if="isVisible" data-test="satellite" :class="className" @click="onHit" />
 </template>
 
 <script>

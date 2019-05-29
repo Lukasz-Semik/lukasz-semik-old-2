@@ -1,33 +1,17 @@
-import Vuex from 'vuex';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
-import { game } from '@/store/game';
 import { findByTestAttr } from '@/helpers/tests';
 
 import AnimatedLetter from './AnimatedLetter';
 
-const localVue = createLocalVue();
-
-localVue.use(Vuex);
-
 describe('<AnimatedLetter>', () => {
-  const createStore = (gameState = game.hasPristineState) =>
-    new Vuex.Store({
-      state: {},
-      getters: {
-        gameState: () => gameState,
-      },
-      mutations: undefined,
-    });
-
   it('should render properly with index 0 and normal letter', () => {
     const wrapper = shallowMount(AnimatedLetter, {
       propsData: {
         index: 0,
         letter: 'a',
+        isFallen: false,
       },
-      store: createStore(),
-      localVue,
     });
 
     const animatedWrapper = findByTestAttr(wrapper, 'animated-letter');
@@ -40,9 +24,8 @@ describe('<AnimatedLetter>', () => {
       propsData: {
         index: 0,
         letter: '  ',
+        isFallen: false,
       },
-      store: createStore(),
-      localVue,
     });
 
     const animatedWrapper = findByTestAttr(wrapper, 'animated-letter');
