@@ -27,7 +27,6 @@ describe('<FallingElement />', () => {
       expect($wrapper.classes()).not.toContain('is-fallen');
 
       $wrapper.trigger('transitionend');
-      // console.log(wrapper.emitted('handleLastFallen'));
       expect(wrapper.emitted('handleLastFallen')).toBeUndefined();
     });
   });
