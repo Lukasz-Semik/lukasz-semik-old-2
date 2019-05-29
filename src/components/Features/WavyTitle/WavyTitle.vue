@@ -1,8 +1,9 @@
 <template>
-  <h2 :class="$style['title']">
+  <h2 v-if="isVisible" :class="$style['title']">
     <animated-letter
       data-test="animated-letter"
       v-for="(letter, i) in text"
+      :is-fallen="isFallen"
       :key="`${letter}-${i}`"
       :letter="letter"
       :index="i"
@@ -11,7 +12,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { game } from '@/store/game';
+
 import AnimatedLetter from './AnimatedLetter/AnimatedLetter';
+
+const { gameState } = game;
 
 export default {
   name: 'WavyTitle',
@@ -25,6 +31,13 @@ export default {
     },
   },
   computed: {
+    ...mapGetters({ gameState }),
+    isFallen() {
+      return this.gameState !== game.hasPristineState;
+    },
+    isVisible() {
+      return this.gameState !== game.hasRunningState;
+    },
     text() {
       return this.$t(this.translationPath).split('');
     },

@@ -4,30 +4,21 @@
     :style="{ animationDelay: `${animationDelay}s` }"
     :class="wrapperClassName"
   >
-    <div
-      data-test="inner-wrapper"
-      :class="innerWrapperClassName"
-      :style="{ transition: `all ${fallingTime} ease` }"
-    >
+    <falling-element :is-fallen="isFallen">
       <letter-content :letter="letter" :delay="(index * 600) / 5" />
-    </div>
+    </falling-element>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
-import { game } from '@/store/game';
-import { generateRandom } from '@/helpers/math';
-
+import { FallingElement } from '@/components/Elements';
 import LetterContent from './LetterContent/LetterContent';
-
-const { gameState } = game;
 
 export default {
   name: 'AnimatedLetter',
   components: {
     LetterContent,
+    FallingElement,
   },
   props: {
     index: {
@@ -38,14 +29,12 @@ export default {
       type: String,
       required: true,
     },
-  },
-  data() {
-    return {
-      fallingTime: `${generateRandom(0, 3)}.${generateRandom(1, 9)}s`,
-    };
+    isFallen: {
+      type: Boolean,
+      required: true,
+    },
   },
   computed: {
-    ...mapGetters({ gameState }),
     animationDelay() {
       return -this.index / 5;
     },
@@ -55,14 +44,6 @@ export default {
       return {
         [$style['wrapper']]: true,
         [$style['wavy-move-animation']]: Boolean(letter.trim()),
-      };
-    },
-    innerWrapperClassName() {
-      const { $style, gameState } = this;
-
-      return {
-        [$style['inner-wrapper']]: true,
-        [$style['is-fallen']]: !(gameState === game.hasPristineState),
       };
     },
   },

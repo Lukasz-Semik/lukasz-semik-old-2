@@ -29,10 +29,10 @@
   opacity: 0;
   transform: scale(0);
 
-  &.has-showing-animation {
-    animation: show 0.5s forwards;
+  @mixin show-animation($opacity, $name) {
+    animation: $name 0.5s forwards;
 
-    @keyframes show {
+    @keyframes #{$name} {
       0% {
         opacity: 0;
         transform: scale(0);
@@ -41,10 +41,18 @@
         transform: scale(1.5);
       }
       100% {
-        opacity: 0.3;
+        opacity: $opacity;
         transform: scale(1);
       }
     }
+  }
+
+  &.has-showing-animation {
+    @include show-animation(0.3, a);
+  }
+
+  &.has-full-visible-showing-animation {
+    @include show-animation(1, b);
   }
 }
 

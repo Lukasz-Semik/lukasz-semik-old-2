@@ -10,6 +10,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isFullyVisible: {
+      type: Boolean,
+      default: false,
+    },
     index: {
       type: Number,
       required: true,
@@ -27,11 +31,12 @@ export default {
   },
   computed: {
     className() {
-      const { $style, index, isHit } = this;
+      const { $style, index, isHit, isVisible, isFullyVisible } = this;
 
       return {
         [$style['button']]: true,
-        [$style[`button--${index}`]]: true,
+        [$style[`button--${index}`]]: isVisible,
+        [$style[`button--${index}-is-fully-visible`]]: isFullyVisible,
         [$style['is-hit']]: isHit,
       };
     },

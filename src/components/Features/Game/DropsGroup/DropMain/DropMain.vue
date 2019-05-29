@@ -76,6 +76,10 @@ export default {
 
         return this.setGameIntroState();
       }
+
+      if (this.gameState === game.hasRunningState) {
+        this.isHit = true;
+      }
     },
     onSecondaryClick() {
       if (this.gameState === game.hasPristineState && !this.isHit && this.isSwimming) {
@@ -107,6 +111,7 @@ export default {
       return {
         [$style['showing-wrapper']]: true,
         [$style['has-showing-animation']]: gameState === game.hasCountingState ? isSwimming : true,
+        [$style['has-full-visible-showing-animation']]: gameState === game.hasRunningState,
       };
     },
     dropClassName() {

@@ -29,6 +29,13 @@ export default {
   components: {
     DropMain,
   },
+  watch: {
+    gameState(newVal) {
+      if (newVal === game.hasRunningState) {
+        this.drops = new Array(dropsQty).fill(null).map(() => ({ id: uuid() }));
+      }
+    },
+  },
   data() {
     return {
       drops: [],
