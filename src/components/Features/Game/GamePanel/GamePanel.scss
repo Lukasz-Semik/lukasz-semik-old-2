@@ -1,0 +1,68 @@
+.wrapper {
+  position: absolute;
+  top: 1rem;
+  left: -100%;
+  z-index: 100;
+  width: 30rem;
+  height: 10rem;
+  animation: slide-in 1s forwards;
+
+  @keyframes slide-in {
+    0% {
+      left: -100%;
+    }
+    60% {
+      left: 4rem;
+    }
+    70% {
+      left: 0rem;
+    }
+    80% {
+      left: 3rem;
+    }
+    85% {
+      left: 0rem;
+    }
+    90% {
+      left: 2rem;
+    }
+    95% {
+      left: 0rem;
+    }
+    100% {
+      left: 1rem;
+    }
+  }
+}
+
+.board-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.inner-wrapper {
+  height: 3rem;
+  width: 20rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.controls-wrapper {
+  @include overlay;
+  font-size: 4rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.is-visible {
+    opacity: 1;
+  }
+}

@@ -4,15 +4,15 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { game } from '@/store/game';
 import { findByTestAttr } from '@/helpers/tests';
 
-import HealthBar from './HealthBar';
+import GamePanel from './GamePanel';
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
 
-describe('<HealthBar/>', () => {
+describe('<GamePanel/>', () => {
   const mountComponent = ({ gameState = game.hasPristineState, healthPoints = 100 } = {}) =>
-    shallowMount(HealthBar, {
+    shallowMount(GamePanel, {
       store: new Vuex.Store({
         getters: {
           gameState: () => gameState,

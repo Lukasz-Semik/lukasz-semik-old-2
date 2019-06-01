@@ -20,6 +20,12 @@
   cursor: pointer;
 }
 
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @mixin at-small() {
   @media (min-width: 450px) {
     @content;
@@ -30,10 +36,4 @@
   @media (min-width: 700px) {
     @content;
   }
-}
-
-@mixin flex-center() {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

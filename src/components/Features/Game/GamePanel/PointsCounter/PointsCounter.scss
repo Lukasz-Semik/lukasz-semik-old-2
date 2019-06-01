@@ -1,0 +1,27 @@
+.wrapper {
+  @include flex-center;
+
+  position: absolute;
+  bottom: 1.5rem;
+  left: 8rem;
+}
+
+.coin {
+  @include flex-center;
+
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+  font-size: 2rem;
+  border-radius: 50%;
+  color: #ad7f00;
+  border: 4px solid #ad7f00;
+  background-color: #facc6b;
+  background-image: linear-gradient(315deg, #facc6b 0%, #fabc3c 74%);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.value {
+  font-size: 2.7rem;
+  color: darken($color: #ad7f00, $amount: 10%);
+}

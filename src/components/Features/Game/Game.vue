@@ -1,14 +1,16 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <drops-group />
+    <drops-group :update-game-score="updateGameScore"/>
 
-    <health-bar />
+    <game-panel/>
 
-    <start-counter />
+    <start-counter/>
 
-    <button v-if="shouldShowStartingButton" :class="$style['button']" @click="setGameCountingState">
-      Start the Game!
-    </button>
+    <button
+      v-if="shouldShowStartingButton"
+      :class="$style['button']"
+      @click="setGameCountingState"
+    >Start the Game!</button>
   </div>
 </template>
 
@@ -19,16 +21,16 @@ import { game } from '@/store/game';
 
 import DropsGroup from './DropsGroup/DropsGroup';
 import StartCounter from './StartCounter/StartCounter';
-import HealthBar from './HealthBar/HealthBar';
+import GamePanel from './GamePanel/GamePanel';
 
-const { gameState, setGameCountingState } = game;
+const { gameState, setGameCountingState, updateGameScore } = game;
 
 export default {
   name: 'Game',
   components: {
     DropsGroup,
     StartCounter,
-    HealthBar,
+    GamePanel,
   },
   computed: {
     ...mapGetters({ gameState }),
@@ -37,7 +39,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({ setGameCountingState }),
+    ...mapMutations({ setGameCountingState, updateGameScore }),
   },
 };
 </script>

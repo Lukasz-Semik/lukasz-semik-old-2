@@ -5,7 +5,7 @@
     :style="{ left: leftOffsetSwimWrapper }"
     @animationend.self="onSwimEnd"
   >
-    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isSwimming" />
+    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isSwimming"/>
 
     <div
       data-test="showing-wrapper"
@@ -14,7 +14,7 @@
       @animationend.self="onShowEnd"
     >
       <div data-test="drop" :class="dropClassName">
-        <button data-test="main-button" :class="$style['main-button']" @click="onMainClick" />
+        <button data-test="main-button" :class="$style['main-button']" @click="onMainClick"/>
         <button
           data-test="secondary-button"
           :class="$style['secondary-button']"
@@ -79,6 +79,8 @@ export default {
 
       if (this.gameState === game.hasRunningState) {
         this.isHit = true;
+        console.log('clicked');
+        this.$emit('handleDropClick');
       }
     },
     onSecondaryClick() {

@@ -5,6 +5,8 @@ export const names = {
   setGameCountingState: 'setGameCountingState',
   setGameRunningState: 'setGameRunningState',
   substractHealthPoints: 'substractHealthPoints',
+  // TODO: make more valid version
+  updateGameScore: 'updateGameScore',
 };
 
 export default {
@@ -19,9 +21,13 @@ export default {
   },
   [names.substractHealthPoints]: state => {
     if (state.healthPoints === 1) {
-      state.gameState = game.hasOverState;
+      // state.gameState = game.hasOverState;
     }
 
-    state.healthPoints--;
+    // state.healthPoints--;
+    state.healthPoints -= 5;
+  },
+  [names.updateGameScore]: state => {
+    state.gameScore++;
   },
 };

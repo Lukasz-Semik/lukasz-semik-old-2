@@ -8,6 +8,7 @@
       :game-state="gameState"
       :set-game-intro-state="setGameIntroState"
       @handleSwimEnd="onSwimEnd"
+      @handleDropClick="onDropClick"
     />
   </div>
 </template>
@@ -28,6 +29,12 @@ export default {
   name: 'DropsGroup',
   components: {
     DropMain,
+  },
+  props: {
+    updateGameScore: {
+      type: Function,
+      required: true,
+    },
   },
   watch: {
     gameState(newVal) {
@@ -54,11 +61,15 @@ export default {
         return;
       }
 
-      if (this.gameState === game.hasRunningState && !isHit) {
+      if (this.gameState === game.hasRunningState) {
         this.substractHealthPoints();
       }
 
       this.drops = this.drops.map(drop => (drop.id === id ? { id: uuid() } : drop));
+    },
+    onDropClick() {
+      console.log('dsadas');
+      this.updateGameScore();
     },
   },
 };

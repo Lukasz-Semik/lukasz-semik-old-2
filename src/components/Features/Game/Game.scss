@@ -1,5 +1,6 @@
 .wrapper {
   @include overlay;
+  overflow: hidden;
 }
 
 .button {
