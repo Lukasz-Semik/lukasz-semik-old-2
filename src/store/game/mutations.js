@@ -28,6 +28,6 @@ export default {
     state.healthPoints -= 5;
   },
   [names.updateGameScore]: state => {
-    state.gameScore++;
+    state.gameGold++;
   },
 };

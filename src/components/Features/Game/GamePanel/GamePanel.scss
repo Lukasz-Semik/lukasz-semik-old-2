@@ -66,3 +66,16 @@
     opacity: 1;
   }
 }
+
+.counters-wrapper {
+  @include flex-center;
+
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-43%);
+}
+
+.diamond-wrapper {
+  margin-right: 2rem;
+}

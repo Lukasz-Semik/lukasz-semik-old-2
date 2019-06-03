@@ -61,14 +61,13 @@ export default {
         return;
       }
 
-      if (this.gameState === game.hasRunningState) {
+      if (this.gameState === game.hasRunningState && !isHit) {
         this.substractHealthPoints();
       }
 
       this.drops = this.drops.map(drop => (drop.id === id ? { id: uuid() } : drop));
     },
     onDropClick() {
-      console.log('dsadas');
       this.updateGameScore();
     },
   },

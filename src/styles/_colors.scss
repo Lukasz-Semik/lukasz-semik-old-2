@@ -4,3 +4,11 @@ $white-teal: #abfffe;
 $hp-green: #42f47a;
 $hp-yellow: #fbff16;
 $hp-red: #ef2828;
+$gold: #ad7f00;
+$gold-light: #facc6b;
+$gold-dark: darken(
+  $color: $gold,
+  $amount: 10%,
+);
+$gold-bg: linear-gradient(315deg, #facc6b 0%, #fabc3c 74%);
+$shadow-small: 1px 1px 5px rgba(0, 0, 0, 0.5);

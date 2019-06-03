@@ -5,7 +5,18 @@
     </div>
     <div :class="controlsWrapperClassName">
       <health-bar :health-points="healthPoints"/>
-      <points-counter :game-score="gameScore"/>
+
+      <div :class="$style['counters-wrapper']">
+        <div :class="$style['diamond-wrapper']">
+          <counter-element :value="gameGold" :color="counterColor">
+            <diamond-element/>
+          </counter-element>
+        </div>
+
+        <counter-element :value="gameGold" :color="counterColor">
+          <coin-element/>
+        </counter-element>
+      </div>
     </div>
   </div>
 </template>
@@ -15,20 +26,20 @@ import { mapGetters } from 'vuex';
 
 import { game } from '@/store/game';
 import BoardPanel from '@/assets/underwater/board.svg';
-import FishElement from '@/assets/underwater/fish.svg';
 
 import HealthBar from './HealthBar/HealthBar';
-import PointsCounter from './PointsCounter/PointsCounter';
+import { CoinElement, CounterElement, DiamondElement, counterColors } from '../Elements';
 
-const { healthPoints, gameScore, gameState, updateGameScore } = game;
+const { healthPoints, gameGold, gameState, updateGameScore } = game;
 
 export default {
   name: 'GamePanel',
   components: {
     BoardPanel,
-    FishElement,
     HealthBar,
-    PointsCounter,
+    CounterElement,
+    CoinElement,
+    DiamondElement,
   },
   data() {
     return {
@@ -36,7 +47,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ healthPoints, gameState, gameScore }),
+    ...mapGetters({ healthPoints, gameState, gameGold }),
+    counterColor() {
+      return counterColors.gold;
+    },
     isGameRunning() {
       return this.gameState === game.hasRunningState;
     },

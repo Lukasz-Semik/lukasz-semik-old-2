@@ -7,7 +7,7 @@ import { game as gameStates } from './constants';
 const state = {
   gameState: gameStates.hasRunningState,
   healthPoints: 100,
-  gameScore: 0,
+  gameGold: 0,
 };
 
 export default {

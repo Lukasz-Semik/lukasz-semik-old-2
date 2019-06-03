@@ -1,11 +1,11 @@
 export const names = {
   gameState: 'gameState',
   healthPoints: 'healthPoints',
-  gameScore: 'gameScore',
+  gameGold: 'gameGold',
 };
 
 export default {
   [names.gameState]: state => state.gameState,
   [names.healthPoints]: state => state.healthPoints,
-  [names.gameScore]: state => state.gameScore,
+  [names.gameGold]: state => state.gameGold,
 };
