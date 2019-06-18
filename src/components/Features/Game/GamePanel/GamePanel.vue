@@ -8,7 +8,7 @@
 
       <div :class="$style['counters-wrapper']">
         <div :class="$style['diamond-wrapper']">
-          <counter-element :value="gameGold" :color="counterColor">
+          <counter-element :value="gameScore" :color="counterColor">
             <diamond-element/>
           </counter-element>
         </div>
@@ -30,7 +30,7 @@ import BoardPanel from '@/assets/underwater/board.svg';
 import HealthBar from './HealthBar/HealthBar';
 import { CoinElement, CounterElement, DiamondElement, counterColors } from '../Elements';
 
-const { healthPoints, gameGold, gameState, updateGameScore } = game;
+const { healthPoints, gameScore, gameGold, gameState, updateGameStatistics } = game;
 
 export default {
   name: 'GamePanel',
@@ -47,7 +47,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ healthPoints, gameState, gameGold }),
+    ...mapGetters({ healthPoints, gameState, gameGold, gameScore }),
     counterColor() {
       return counterColors.gold;
     },

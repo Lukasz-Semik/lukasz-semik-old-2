@@ -6,7 +6,7 @@ export const names = {
   setGameRunningState: 'setGameRunningState',
   substractHealthPoints: 'substractHealthPoints',
   // TODO: make more valid version
-  updateGameScore: 'updateGameScore',
+  updateGameStatistics: 'updateGameStatistics',
 };
 
 export default {
@@ -27,7 +27,13 @@ export default {
     // state.healthPoints--;
     state.healthPoints -= 5;
   },
-  [names.updateGameScore]: state => {
-    state.gameGold++;
+  [names.updateGameStatistics]: state => {
+    const newGameScore = state.gameScore + 1;
+
+    if (newGameScore % 5 === 0) {
+      state.gameGold++;
+    }
+
+    state.gameScore = newGameScore;
   },
 };

@@ -8,6 +8,7 @@ const state = {
   gameState: gameStates.hasRunningState,
   healthPoints: 100,
   gameGold: 0,
+  gameScore: 0,
 };
 
 export default {

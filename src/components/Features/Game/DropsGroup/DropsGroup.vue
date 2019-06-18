@@ -19,7 +19,7 @@ import uuid from 'uuid/v4';
 
 import { game } from '@/store/game';
 
-const { gameState, substractHealthPoints, setGameIntroState } = game;
+const { gameState, substractHealthPoints, setGameIntroState, updateGameStatistics } = game;
 
 import DropMain from './DropMain/DropMain';
 
@@ -29,12 +29,6 @@ export default {
   name: 'DropsGroup',
   components: {
     DropMain,
-  },
-  props: {
-    updateGameScore: {
-      type: Function,
-      required: true,
-    },
   },
   watch: {
     gameState(newVal) {
@@ -55,7 +49,7 @@ export default {
     ...mapGetters({ gameState }),
   },
   methods: {
-    ...mapMutations({ setGameIntroState, substractHealthPoints }),
+    ...mapMutations({ setGameIntroState, substractHealthPoints, updateGameStatistics }),
     onSwimEnd({ id, isHit }) {
       if (this.gameState === game.hasCountingState) {
         return;
@@ -68,7 +62,7 @@ export default {
       this.drops = this.drops.map(drop => (drop.id === id ? { id: uuid() } : drop));
     },
     onDropClick() {
-      this.updateGameScore();
+      this.updateGameStatistics();
     },
   },
 };

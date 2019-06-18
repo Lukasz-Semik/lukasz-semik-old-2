@@ -1,6 +1,6 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <drops-group :update-game-score="updateGameScore"/>
+    <drops-group :update-game-score="updateGameStatistics"/>
 
     <game-panel/>
 
@@ -23,7 +23,7 @@ import DropsGroup from './DropsGroup/DropsGroup';
 import StartCounter from './StartCounter/StartCounter';
 import GamePanel from './GamePanel/GamePanel';
 
-const { gameState, setGameCountingState, updateGameScore } = game;
+const { gameState, setGameCountingState, updateGameStatistics } = game;
 
 export default {
   name: 'Game',
@@ -39,7 +39,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({ setGameCountingState, updateGameScore }),
+    ...mapMutations({ setGameCountingState, updateGameStatistics }),
   },
 };
 </script>
