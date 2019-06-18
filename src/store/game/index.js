@@ -5,8 +5,10 @@ import mutations, { names as mutationsNames } from './mutations';
 import { game as gameStates } from './constants';
 
 const state = {
-  gameState: gameStates.hasPristineState,
+  gameState: gameStates.hasRunningState,
   healthPoints: 100,
+  gameGold: 0,
+  gameScore: 0,
 };
 
 export default {

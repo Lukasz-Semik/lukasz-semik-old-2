@@ -1,0 +1,29 @@
+.wrapper {
+  @include flex-center;
+}
+
+.symbol-wrapper {
+  margin-right: 1rem;
+}
+
+.multiplier {
+  margin-right: 3px;
+}
+
+.value-wrapper {
+  font-size: 2.7rem;
+
+  &.is-gold {
+    color: $gold-dark;
+  }
+}
+
+.value {
+  display: inline-block;
+  transform: scale(1);
+  transition: transform 0.2s ease;
+
+  &.is-adding {
+    transform: scale(1.4);
+  }
+}

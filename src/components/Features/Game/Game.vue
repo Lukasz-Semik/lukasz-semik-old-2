@@ -1,8 +1,8 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <drops-group />
+    <drops-group :update-game-score="updateGameStatistics" />
 
-    <health-bar />
+    <game-panel />
 
     <start-counter />
 
@@ -19,16 +19,16 @@ import { game } from '@/store/game';
 
 import DropsGroup from './DropsGroup/DropsGroup';
 import StartCounter from './StartCounter/StartCounter';
-import HealthBar from './HealthBar/HealthBar';
+import GamePanel from './GamePanel/GamePanel';
 
-const { gameState, setGameCountingState } = game;
+const { gameState, setGameCountingState, updateGameStatistics } = game;
 
 export default {
   name: 'Game',
   components: {
     DropsGroup,
     StartCounter,
-    HealthBar,
+    GamePanel,
   },
   computed: {
     ...mapGetters({ gameState }),
@@ -37,7 +37,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({ setGameCountingState }),
+    ...mapMutations({ setGameCountingState, updateGameStatistics }),
   },
 };
 </script>

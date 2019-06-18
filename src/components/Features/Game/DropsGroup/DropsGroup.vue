@@ -8,6 +8,7 @@
       :game-state="gameState"
       :set-game-intro-state="setGameIntroState"
       @handleSwimEnd="onSwimEnd"
+      @handleDropClick="onDropClick"
     />
   </div>
 </template>
@@ -18,7 +19,7 @@ import uuid from 'uuid/v4';
 
 import { game } from '@/store/game';
 
-const { gameState, substractHealthPoints, setGameIntroState } = game;
+const { gameState, substractHealthPoints, setGameIntroState, updateGameStatistics } = game;
 
 import DropMain from './DropMain/DropMain';
 
@@ -48,7 +49,7 @@ export default {
     ...mapGetters({ gameState }),
   },
   methods: {
-    ...mapMutations({ setGameIntroState, substractHealthPoints }),
+    ...mapMutations({ setGameIntroState, substractHealthPoints, updateGameStatistics }),
     onSwimEnd({ id, isHit }) {
       if (this.gameState === game.hasCountingState) {
         return;
@@ -59,6 +60,9 @@ export default {
       }
 
       this.drops = this.drops.map(drop => (drop.id === id ? { id: uuid() } : drop));
+    },
+    onDropClick() {
+      this.updateGameStatistics();
     },
   },
 };

@@ -79,6 +79,8 @@ export default {
 
       if (this.gameState === game.hasRunningState) {
         this.isHit = true;
+
+        this.$emit('handleDropClick');
       }
     },
     onSecondaryClick() {
