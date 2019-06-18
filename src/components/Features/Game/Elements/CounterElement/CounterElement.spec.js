@@ -40,6 +40,7 @@ describe('<CounterElement/>', () => {
   it('should render properly value and react on value add', () => {
     const wrapper = mountComponent();
     const $value = findByTestAttr(wrapper, 'value');
+
     expect($value.classes()).toContain('value');
     expect($value.classes()).not.toContain('is-adding');
     wrapper.setProps({

@@ -58,6 +58,7 @@
 
 .controls-wrapper {
   @include overlay;
+
   font-size: 4rem;
   opacity: 0;
   transition: opacity 0.3s ease;
