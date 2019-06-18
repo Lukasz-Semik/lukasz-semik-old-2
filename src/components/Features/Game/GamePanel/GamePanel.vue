@@ -1,20 +1,25 @@
 <template>
-  <div v-if="isGameRunning" :class="$style['wrapper']" @animationend="isMounted = true">
+  <div
+    data-test="wrapper"
+    v-if="isGameRunning"
+    :class="$style['wrapper']"
+    @animationend="isMounted = true"
+  >
     <div :class="$style['board-wrapper']">
-      <board-panel/>
+      <board-panel />
     </div>
-    <div :class="controlsWrapperClassName">
-      <health-bar :health-points="healthPoints"/>
+    <div data-test="controls-wrapper" :class="controlsWrapperClassName">
+      <health-bar :health-points="healthPoints" />
 
       <div :class="$style['counters-wrapper']">
         <div :class="$style['diamond-wrapper']">
           <counter-element :value="gameScore" :color="counterColor">
-            <diamond-element/>
+            <diamond-element />
           </counter-element>
         </div>
 
         <counter-element :value="gameGold" :color="counterColor">
-          <coin-element/>
+          <coin-element />
         </counter-element>
       </div>
     </div>
@@ -30,7 +35,7 @@ import BoardPanel from '@/assets/underwater/board.svg';
 import HealthBar from './HealthBar/HealthBar';
 import { CoinElement, CounterElement, DiamondElement, counterColors } from '../Elements';
 
-const { healthPoints, gameScore, gameGold, gameState, updateGameStatistics } = game;
+const { healthPoints, gameScore, gameGold, gameState } = game;
 
 export default {
   name: 'GamePanel',

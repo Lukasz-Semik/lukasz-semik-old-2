@@ -1,7 +1,7 @@
 <template>
   <div :class="$style['wrapper']">
-    <fish-element :style="{ right: fishRightPosition }"/>
-    <div :class="healthBarClassName"></div>
+    <fish-element :style="{ right: fishRightPosition }" />
+    <div data-test="health-bar" :class="healthBarClassName"></div>
   </div>
 </template>
 

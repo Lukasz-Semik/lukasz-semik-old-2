@@ -1,12 +1,14 @@
 <template>
   <div :class="$style['wrapper']">
     <div :class="$style['symbol-wrapper']">
-      <slot/>
+      <slot />
     </div>
 
     <p :class="valueWrapperClassName">
-      <span v-if="!isXHidden" :class="$style['multiplier']">x</span>
-      <span :class="valueClassName" @transitionend="onTransitionEnd">{{ value }}</span>
+      <span v-if="!isXHidden" data-test="multiplier" :class="$style['multiplier']">x</span>
+      <span data-test="value" :class="valueClassName" @transitionend="onTransitionEnd">{{
+        value
+      }}</span>
     </p>
   </div>
 </template>

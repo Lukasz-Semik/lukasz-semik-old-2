@@ -17,47 +17,51 @@ describe('<GamePanel/>', () => {
         getters: {
           gameState: () => gameState,
           healthPoints: () => healthPoints,
+          gameScore: () => 5,
+          gameGold: () => 1,
         },
       }),
       localVue,
     });
 
+  // TODO: add game over state!
   describe(`when game not ${game.hasRunningState}`, () => {
-    const wrapper = mountComponent();
+    it('should not exist', () => {
+      expect(findByTestAttr(mountComponent(), 'health-bar').exists()).toBe(false);
+    });
 
     it('should not exist', () => {
-      expect(findByTestAttr(wrapper, 'health-bar').exists()).toBe(false);
+      expect(
+        findByTestAttr(
+          mountComponent({
+            gameState: game.hasIntroState,
+          }),
+          'health-bar'
+        ).exists()
+      ).toBe(false);
+    });
+
+    it('should not exist', () => {
+      expect(
+        findByTestAttr(
+          mountComponent({
+            gameState: game.hasCountingState,
+          }),
+          'health-bar'
+        ).exists()
+      ).toBe(false);
     });
   });
 
   describe(`when game ${game.hasRunningState}`, () => {
-    it('should have green background and 100% width', () => {
+    it('should show controls after mount animations', () => {
       const wrapper = mountComponent({ gameState: game.hasRunningState });
+      const $controls = findByTestAttr(wrapper, 'controls-wrapper');
 
-      const $healthBar = findByTestAttr(wrapper, 'health-bar');
-      expect($healthBar.classes()).not.toContain('is-yellow');
-      expect($healthBar.classes()).not.toContain('is-red');
-      expect($healthBar.attributes('style')).toBe('width: 100%;');
-    });
-
-    it('should have green background and 59% width', () => {
-      const hp = 59;
-      const wrapper = mountComponent({ gameState: game.hasRunningState, healthPoints: hp });
-
-      const $healthBar = findByTestAttr(wrapper, 'health-bar');
-      expect($healthBar.classes()).toContain('is-yellow');
-      expect($healthBar.classes()).not.toContain('is-red');
-      expect($healthBar.attributes('style')).toBe(`width: ${hp}%;`);
-    });
-
-    it('should have green background and 29% width', () => {
-      const hp = 29;
-      const wrapper = mountComponent({ gameState: game.hasRunningState, healthPoints: hp });
-
-      const $healthBar = findByTestAttr(wrapper, 'health-bar');
-      expect($healthBar.classes()).toContain('is-yellow');
-      expect($healthBar.classes()).toContain('is-red');
-      expect($healthBar.attributes('style')).toBe(`width: ${hp}%;`);
+      expect($controls.classes()).toContain('controls-wrapper');
+      expect($controls.classes()).not.toContain('is-visible');
+      findByTestAttr(wrapper, 'wrapper').trigger('animationend');
+      expect($controls.classes()).toContain('is-visible');
     });
   });
 });

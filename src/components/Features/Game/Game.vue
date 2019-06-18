@@ -1,16 +1,14 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <drops-group :update-game-score="updateGameStatistics"/>
+    <drops-group :update-game-score="updateGameStatistics" />
 
-    <game-panel/>
+    <game-panel />
 
-    <start-counter/>
+    <start-counter />
 
-    <button
-      v-if="shouldShowStartingButton"
-      :class="$style['button']"
-      @click="setGameCountingState"
-    >Start the Game!</button>
+    <button v-if="shouldShowStartingButton" :class="$style['button']" @click="setGameCountingState">
+      Start the Game!
+    </button>
   </div>
 </template>
 
