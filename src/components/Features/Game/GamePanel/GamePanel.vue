@@ -6,21 +6,21 @@
     @animationend="isMounted = true"
   >
     <div :class="$style['board-wrapper']">
-      <board-panel/>
+      <board-panel />
     </div>
 
     <div data-test="controls-wrapper" :class="controlsWrapperClassName">
-      <health-bar :health-points="healthPoints"/>
+      <health-bar :health-points="healthPoints" />
 
       <div :class="$style['counters-wrapper']">
         <div :class="$style['diamond-wrapper']">
           <counter-element :value="gameScore" :color="counterColor">
-            <diamond-element/>
+            <diamond-element />
           </counter-element>
         </div>
 
         <counter-element :value="gameGold" :color="counterColor">
-          <coin-element/>
+          <coin-element />
         </counter-element>
       </div>
     </div>
