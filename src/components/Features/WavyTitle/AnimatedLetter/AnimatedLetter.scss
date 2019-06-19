@@ -5,6 +5,15 @@
   &.wavy-move-animation {
     transform: translateY(-5%);
     animation: wavy-move 2s alternate infinite ease-in-out;
+
+    @keyframes wavy-move {
+      0% {
+        transform: translateY(-5%) scale(1.06);
+      }
+      100% {
+        transform: translateY(5%) scale(1);
+      }
+    }
   }
 }
 
@@ -14,14 +23,5 @@
   &.is-fallen {
     opacity: 0;
     transform: translateY(100%);
-  }
-}
-
-@keyframes wavy-move {
-  0% {
-    transform: translateY(-5%) scale(1.06);
-  }
-  100% {
-    transform: translateY(5%) scale(1);
   }
 }

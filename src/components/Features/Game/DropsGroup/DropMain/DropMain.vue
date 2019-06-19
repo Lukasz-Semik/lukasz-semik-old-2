@@ -1,35 +1,38 @@
 <template>
-  <div
-    data-test="swim-wrapper"
-    :class="swimWrapperClassName"
-    :style="{ left: leftOffsetSwimWrapper }"
-    @animationend.self="onSwimEnd"
+  <animated-element
+    test-name="swim-wrapper"
+    :class-name="swimWrapperClassName"
+    :style-props="{ left: leftOffsetSwimWrapper }"
+    is-game-pause-reacting
+    @handleAnimationEnd="onSwimEnd"
   >
-    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isSwimming" />
+    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isSwimming"/>
 
-    <div
-      data-test="showing-wrapper"
-      :class="showingWrapperClassName"
-      :style="{ animationDelay: showDelay }"
-      @animationend.self="onShowEnd"
+    <animated-element
+      test-name="showing-wrapper"
+      :class-name="showingWrapperClassName"
+      :style-props="{ animationDelay: showDelay }"
+      is-game-pause-reacting
+      @handleAnimationEnd="onShowEnd"
     >
-      <div data-test="drop" :class="dropClassName">
-        <button data-test="main-button" :class="$style['main-button']" @click="onMainClick" />
+      <animated-element test-name="drop" :class-name="dropClassName" is-game-pause-reacting>
+        <button data-test="main-button" :class="$style['main-button']" @click="onMainClick"/>
         <button
           data-test="secondary-button"
           :class="$style['secondary-button']"
           :style="{ top: topOffsetSecondaryBtn, left: leftOffsetSecondaryBtn }"
           @click="onSecondaryClick"
         />
-      </div>
-    </div>
-  </div>
+      </animated-element>
+    </animated-element>
+  </animated-element>
 </template>
 
 <script>
 import { generateRandom } from '@/helpers/math';
 
 import { game } from '@/store/game';
+import { AnimatedElement } from '@/components/Elements';
 
 import DropSatellites from './DropSatellites/DropSatellites';
 
@@ -37,6 +40,7 @@ export default {
   name: 'DropMain',
   components: {
     DropSatellites,
+    AnimatedElement,
   },
   props: {
     id: {
