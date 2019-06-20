@@ -1,7 +1,6 @@
 <template>
   <component
     :is="tag"
-    :data-test="testName"
     :class="className"
     :style="mergedStyles"
     @click="onClick"
@@ -32,10 +31,6 @@ export default {
     isGamePauseReacting: {
       type: Boolean,
       default: false,
-    },
-    testName: {
-      type: String,
-      default: '',
     },
     tag: {
       type: String,

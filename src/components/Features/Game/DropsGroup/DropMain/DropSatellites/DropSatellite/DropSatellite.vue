@@ -2,7 +2,7 @@
   <animated-element
     tag="button"
     v-if="isVisible"
-    test-name="satellite"
+    data-test="satellite"
     :class-name="className"
     is-game-pause-reacting
     @handleClick="onHit"

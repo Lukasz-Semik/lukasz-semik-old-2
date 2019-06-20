@@ -1,6 +1,6 @@
 <template>
   <animated-element
-    test-name="swim-wrapper"
+    data-test="swim-wrapper"
     :class-name="swimWrapperClassName"
     :style-props="{ left: leftOffsetSwimWrapper }"
     is-game-pause-reacting
@@ -9,13 +9,13 @@
     <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isSwimming"/>
 
     <animated-element
-      test-name="showing-wrapper"
+      data-test="showing-wrapper"
       :class-name="showingWrapperClassName"
       :style-props="{ animationDelay: showDelay }"
       is-game-pause-reacting
       @handleAnimationEnd="onShowEnd"
     >
-      <animated-element test-name="drop" :class-name="dropClassName" is-game-pause-reacting>
+      <animated-element data-test="drop" :class-name="dropClassName" is-game-pause-reacting>
         <button data-test="main-button" :class="$style['main-button']" @click="onMainClick"/>
         <button
           data-test="secondary-button"
