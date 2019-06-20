@@ -2,7 +2,7 @@ import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 
 import { game } from '@/store/game';
-import { findAllByTestAttr } from '@/helpers/tests';
+import { findAllByTestAttr } from '@/utils/tests';
 
 import WavyTitle from './WavyTitle';
 

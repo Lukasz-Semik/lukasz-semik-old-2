@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { each } from 'lodash';
 
-import { generateTestVuex, findByTestAttr } from '@/helpers/tests';
+import { generateTestGameVuex, findByTestAttr } from '@/utils/tests';
 import { game } from '@/store/game';
 
 import DropMain from './DropMain';
@@ -20,7 +20,7 @@ describe('<DropMain />', () => {
         gameState,
         setGameIntroState: setGameIntroStateSpy,
       },
-      ...generateTestVuex(),
+      ...generateTestGameVuex(),
     });
 
   describe(`when game ${game.hasPristineState}`, () => {

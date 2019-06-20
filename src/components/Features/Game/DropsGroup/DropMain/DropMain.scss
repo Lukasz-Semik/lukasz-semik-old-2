@@ -10,7 +10,7 @@
   }
 
   &.is-swimming {
-    animation: swim 100s linear;
+    animation: swim 10s linear;
   }
 
   @keyframes swim {
@@ -82,6 +82,8 @@
   @include button-reset;
 
   position: absolute;
+  top: 0;
+  left: 0;
   display: block;
   width: 100%;
   height: 100%;

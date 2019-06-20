@@ -5,9 +5,21 @@ const localVue = createLocalVue();
 
 localVue.use(Vuex);
 
-export const generateTestVuex = () => ({
+export const generateTestGameVuex = ({
+  getters = {
+    isGamePaused: () => false,
+  },
+  mutations = {},
+  actions = {},
+  state = {},
+} = {}) => ({
   localVue,
-  store: new Vuex.Store({}),
+  store: new Vuex.Store({
+    getters,
+    mutations,
+    actions,
+    state,
+  }),
 });
 
 export const findByTestAttr = (node, attrName) => node.find(`[data-test="${attrName}"]`);

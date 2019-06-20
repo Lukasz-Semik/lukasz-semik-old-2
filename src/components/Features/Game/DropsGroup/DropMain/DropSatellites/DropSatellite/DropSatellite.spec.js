@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 
-import { findByTestAttr } from '@/helpers/tests';
+import { generateTestGameVuex, findByTestAttr } from '@/utils/tests';
 
 import DropSatellite from './DropSatellite';
 
@@ -11,6 +11,7 @@ describe('<DropSatellite />', () => {
         isVisible: false,
         index: 1,
       },
+      ...generateTestGameVuex(),
     });
 
     it('should not render satellite', () => {
@@ -24,6 +25,7 @@ describe('<DropSatellite />', () => {
         isVisible: true,
         index: 1,
       },
+      ...generateTestGameVuex(),
     });
 
     it('should render satellite with proper main classes based on index', () => {

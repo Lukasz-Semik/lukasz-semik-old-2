@@ -24,7 +24,7 @@
         </counter-element>
       </div>
 
-      <button @click="setGameIsPaused(!isGamePaused)" :class="$style['close-button']">x</button>
+      <button @click="setIsGamePaused(!isGamePaused)" :class="$style['close-button']">x</button>
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ import BoardPanel from '@/assets/underwater/board.svg';
 import HealthBar from './HealthBar/HealthBar';
 import { CoinElement, CounterElement, DiamondElement, counterColors } from '../Elements';
 
-const { healthPoints, gameScore, gameGold, gameState, isGamePaused, setGameIsPaused } = game;
+const { healthPoints, gameScore, gameGold, gameState, isGamePaused, setIsGamePaused } = game;
 
 export default {
   name: 'GamePanel',
@@ -55,7 +55,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations({ setGameIsPaused }),
+    ...mapMutations({ setIsGamePaused }),
   },
   computed: {
     ...mapGetters({ healthPoints, gameState, gameGold, gameScore, isGamePaused }),

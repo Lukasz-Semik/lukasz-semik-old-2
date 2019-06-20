@@ -42,9 +42,6 @@ export default {
       default: 'div',
     },
   },
-  created() {
-    this.onWindowBlur();
-  },
   computed: {
     ...mapGetters({ isGamePaused }),
     mergedStyles() {
@@ -60,9 +57,6 @@ export default {
     },
     onClick() {
       this.$emit('handleClick');
-    },
-    onWindowBlur() {
-      window.onblur = () => console.log('onblur');
     },
   },
 };

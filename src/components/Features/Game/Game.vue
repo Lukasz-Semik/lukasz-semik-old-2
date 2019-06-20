@@ -1,14 +1,16 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <drops-group :update-game-score="updateGameStatistics" />
+    <drops-group/>
 
-    <game-panel />
+    <game-panel/>
 
-    <start-counter />
+    <start-counter/>
 
-    <button v-if="shouldShowStartingButton" :class="$style['button']" @click="setGameCountingState">
-      Start the Game!
-    </button>
+    <button
+      v-if="shouldShowStartingButton"
+      :class="$style['button']"
+      @click="setGameCountingState"
+    >Start the Game!</button>
   </div>
 </template>
 
@@ -21,7 +23,7 @@ import DropsGroup from './DropsGroup/DropsGroup';
 import StartCounter from './StartCounter/StartCounter';
 import GamePanel from './GamePanel/GamePanel';
 
-const { gameState, setGameCountingState, updateGameStatistics } = game;
+const { gameState, setGameCountingState, updateGameStatistics, setIsGamePaused } = game;
 
 export default {
   name: 'Game',
@@ -30,6 +32,11 @@ export default {
     StartCounter,
     GamePanel,
   },
+  created() {
+    if (window) {
+      window.onblur = () => this.setIsGamePaused(true);
+    }
+  },
   computed: {
     ...mapGetters({ gameState }),
     shouldShowStartingButton() {
@@ -37,7 +44,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({ setGameCountingState, updateGameStatistics }),
+    ...mapMutations({ setGameCountingState, updateGameStatistics, setIsGamePaused }),
   },
 };
 </script>
