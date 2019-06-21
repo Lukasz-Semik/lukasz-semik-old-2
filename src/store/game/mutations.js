@@ -18,11 +18,10 @@ export default {
   [names.setGameCountingState]: state => {
     state.gameState = game.hasCountingState;
   },
-  [names.restartGame]: state => {
+  [names.restartGame]: (state, newGameState = game.hasCountingState) => {
     const newState = {
       ...initialState,
-      isGamePaused: false,
-      gameState: game.hasCountingState,
+      gameState: newGameState,
     };
 
     Object.assign(state, newState);

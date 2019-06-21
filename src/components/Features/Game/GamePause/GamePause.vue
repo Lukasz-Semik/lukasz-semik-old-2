@@ -1,6 +1,11 @@
 <template>
   <modal-element :name="modalName" :title="$t('underwater.pause')">
-    <menu-group @handleResumeClick="onResumeClick" @handleRestartClick="onRestartClick" />
+    <menu-group
+      @handleResumeClick="onResumeClick"
+      @handleRestartClick="onRestartClick"
+      @handleIntroClick="onIntroClick"
+      @handleHomeClick="onHomeClick"
+    />
   </modal-element>
 </template>
 
@@ -35,13 +40,21 @@ export default {
   },
   methods: {
     ...mapMutations({ setIsGamePaused, restartGame }),
-    onResumeClick() {
-      this.setIsGamePaused(false);
+    onItemClick(stateChanger) {
+      stateChanger();
       this.$modal.hide(this.modalName);
     },
+    onResumeClick() {
+      this.onItemClick(() => this.setIsGamePaused(false));
+    },
     onRestartClick() {
-      this.restartGame();
-      this.$modal.hide(this.modalName);
+      this.onItemClick(() => this.restartGame());
+    },
+    onIntroClick() {
+      this.onItemClick(() => this.restartGame(game.hasIntroState));
+    },
+    onHomeClick() {
+      this.onItemClick(() => this.restartGame(game.hasPristineState));
     },
   },
 };

@@ -4,17 +4,25 @@
       data-test="resume-button"
       :class="$style['menu-item']"
       @click="$emit('handleResumeClick')"
-    >
-      {{ $t('underwater.resume') }}
-    </button>
+    >{{ $t('underwater.resume') }}</button>
 
     <button
       data-test="restart-button"
       :class="$style['menu-item']"
       @click="$emit('handleRestartClick')"
-    >
-      {{ $t('underwater.restart') }}
-    </button>
+    >{{ $t('underwater.restart') }}</button>
+
+    <button
+      data-test="intro-button"
+      :class="$style['menu-item']"
+      @click="$emit('handleIntroClick')"
+    >{{ $t('underwater.intro') }}</button>
+
+    <button
+      data-test="home-button"
+      :class="$style['menu-item']"
+      @click="$emit('handleHomeClick')"
+    >{{ $t('underwater.home') }}</button>
   </div>
 </template>
 
