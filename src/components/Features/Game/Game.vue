@@ -11,6 +11,8 @@
       :class="$style['button']"
       @click="setGameCountingState"
     >Start the Game!</button>
+
+    <game-pause/>
   </div>
 </template>
 
@@ -18,12 +20,14 @@
 import { mapGetters, mapMutations } from 'vuex';
 
 import { game } from '@/store/game';
+import { ModalElement } from '@/components/Elements';
 
 import DropsGroup from './DropsGroup/DropsGroup';
 import StartCounter from './StartCounter/StartCounter';
 import GamePanel from './GamePanel/GamePanel';
+import GamePause from './GamePause/GamePause';
 
-const { gameState, setGameCountingState, updateGameStatistics, setIsGamePaused } = game;
+const { gameState, setGameCountingState, updateGameStatistics } = game;
 
 export default {
   name: 'Game',
@@ -31,11 +35,8 @@ export default {
     DropsGroup,
     StartCounter,
     GamePanel,
-  },
-  created() {
-    if (window) {
-      window.onblur = () => this.setIsGamePaused(true);
-    }
+    ModalElement,
+    GamePause,
   },
   computed: {
     ...mapGetters({ gameState }),
@@ -44,7 +45,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({ setGameCountingState, updateGameStatistics, setIsGamePaused }),
+    ...mapMutations({ setGameCountingState, updateGameStatistics }),
   },
 };
 </script>

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GamePause /> should render properly 1`] = `
+<modal-element-stub name="pause-modal" title="underwater.pause">
+  <menu-group-stub></menu-group-stub>
+</modal-element-stub>
+`;
