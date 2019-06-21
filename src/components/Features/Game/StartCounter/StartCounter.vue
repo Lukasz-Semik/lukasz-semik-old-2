@@ -21,9 +21,7 @@
           :falling-time="letter.delay"
           :is-last="letter.isLast"
           @handleLastFallen="onLastFallen"
-        >
-          {{ letter.content }}
-        </falling-element>
+          >{{ letter.content }}</falling-element>
       </p>
     </transition>
   </div>
@@ -37,12 +35,21 @@ import { FallingElement } from '@/components/Elements';
 
 import { prepareLetters } from './startCounterHelpers';
 
-const { gameState, setGameRunningState } = game;
+const { gameState, isGamePaused, setGameRunningState } = game;
 
 export default {
   name: 'StartCounter',
   components: {
     FallingElement,
+  },
+  watch: {
+    isVisible(newVal, oldVal) {
+      if (newVal && !oldVal) {
+        this.counter = 3;
+        this.isFallen = false;
+        this.letters = prepareLetters(this.$t('underwater.letsGo'));
+      }
+    },
   },
   data() {
     return {
@@ -51,7 +58,6 @@ export default {
       letters: prepareLetters(this.$t('underwater.letsGo')),
     };
   },
-  created() {},
   methods: {
     ...mapMutations({ setGameRunningState }),
     onAfterEnter() {
@@ -69,7 +75,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({ gameState }),
+    ...mapGetters({ gameState, isGamePaused }),
     isVisible() {
       return this.gameState == game.hasCountingState;
     },

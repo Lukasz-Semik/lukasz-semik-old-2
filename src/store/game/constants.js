@@ -5,3 +5,11 @@ export const game = {
   hasRunningState: 'hasRunningState',
   hasOverState: 'hasOverState',
 };
+
+export const initialState = {
+  gameState: game.hasRunningState,
+  healthPoints: 100,
+  isGamePaused: false,
+  gameGold: 0,
+  gameScore: 0,
+};

@@ -7,6 +7,14 @@
     >
       {{ $t('underwater.resume') }}
     </button>
+
+    <button
+      data-test="restart-button"
+      :class="$style['menu-item']"
+      @click="$emit('handleRestartClick')"
+    >
+      {{ $t('underwater.restart') }}
+    </button>
   </div>
 </template>
 
