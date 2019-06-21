@@ -4,7 +4,9 @@
       data-test="resume-button"
       :class="$style['menu-item']"
       @click="$emit('handleResumeClick')"
-    >{{ $t('underwater.resume') }}</button>
+    >
+      {{ $t('underwater.resume') }}
+    </button>
   </div>
 </template>
 

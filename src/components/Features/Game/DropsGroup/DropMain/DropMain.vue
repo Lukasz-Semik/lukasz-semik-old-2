@@ -6,7 +6,7 @@
     is-game-pause-reacting
     @handleAnimationEnd="onSwimEnd"
   >
-    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isSwimming"/>
+    <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isSwimming" />
 
     <animated-element
       data-test="showing-wrapper"
@@ -16,7 +16,7 @@
       @handleAnimationEnd="onShowEnd"
     >
       <animated-element data-test="drop" :class-name="dropClassName" is-game-pause-reacting>
-        <button data-test="main-button" :class="$style['main-button']" @click="onMainClick"/>
+        <button data-test="main-button" :class="$style['main-button']" @click="onMainClick" />
         <button
           data-test="secondary-button"
           :class="$style['secondary-button']"

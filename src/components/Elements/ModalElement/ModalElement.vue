@@ -7,7 +7,7 @@
     :click-to-close="shouldCloseOnOutsideClick"
   >
     <div :class="$style['modal-inner-wrapper']">
-      <paper-graphic/>
+      <paper-graphic />
 
       <div :class="$style['modal-content-wrapper']">
         <h2 data-test="modal-title" :class="$style['title']">{{ title }}</h2>
@@ -47,7 +47,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss">
 .v {
   &--modal-overlay {
@@ -62,4 +61,4 @@ export default {
 }
 </style>
 
-<style lang="scss" module src="./ModalElement.scss" /> 
+<style lang="scss" module src="./ModalElement.scss" />

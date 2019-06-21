@@ -1,18 +1,16 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <drops-group/>
+    <drops-group />
 
-    <game-panel/>
+    <game-panel />
 
-    <start-counter/>
+    <start-counter />
 
-    <button
-      v-if="shouldShowStartingButton"
-      :class="$style['button']"
-      @click="setGameCountingState"
-    >Start the Game!</button>
+    <button v-if="shouldShowStartingButton" :class="$style['button']" @click="setGameCountingState">
+      Start the Game!
+    </button>
 
-    <game-pause/>
+    <game-pause />
   </div>
 </template>
 
@@ -20,7 +18,6 @@
 import { mapGetters, mapMutations } from 'vuex';
 
 import { game } from '@/store/game';
-import { ModalElement } from '@/components/Elements';
 
 import DropsGroup from './DropsGroup/DropsGroup';
 import StartCounter from './StartCounter/StartCounter';
@@ -35,7 +32,6 @@ export default {
     DropsGroup,
     StartCounter,
     GamePanel,
-    ModalElement,
     GamePause,
   },
   computed: {

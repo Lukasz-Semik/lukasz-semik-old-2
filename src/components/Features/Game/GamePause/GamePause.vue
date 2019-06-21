@@ -1,6 +1,6 @@
 <template>
   <modal-element :name="modalName" :title="$t('underwater.pause')">
-    <menu-group @handleResumeClick="onResumeClick"/>
+    <menu-group @handleResumeClick="onResumeClick" />
   </modal-element>
 </template>
 
