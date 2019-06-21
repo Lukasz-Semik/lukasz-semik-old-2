@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { each } from 'lodash';
 
-import { findAllByTestAttr } from '@/helpers/tests';
+import { generateTestGameVuex, findAllByTestAttr } from '@/utils/tests';
 import { game } from '@/store/game';
 
 import DropSatellites from './DropSatellites';
@@ -18,6 +18,7 @@ describe('<DropSatellites>', () => {
         isDropMounted,
         isHit,
       },
+      ...generateTestGameVuex(),
     });
 
   describe('always invisible states', () => {

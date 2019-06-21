@@ -3,6 +3,7 @@ export const names = {
   healthPoints: 'healthPoints',
   gameGold: 'gameGold',
   gameScore: 'gameScore',
+  isGamePaused: 'isGamePaused',
 };
 
 export default {
@@ -10,4 +11,5 @@ export default {
   [names.healthPoints]: state => state.healthPoints,
   [names.gameGold]: state => state.gameGold,
   [names.gameScore]: state => state.gameScore,
+  [names.isGamePaused]: state => state.isGamePaused,
 };

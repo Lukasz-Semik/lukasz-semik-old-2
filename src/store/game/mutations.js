@@ -7,6 +7,7 @@ export const names = {
   substractHealthPoints: 'substractHealthPoints',
   // TODO: make more valid version
   updateGameStatistics: 'updateGameStatistics',
+  setIsGamePaused: 'setIsGamePaused',
 };
 
 export default {
@@ -18,6 +19,9 @@ export default {
   },
   [names.setGameRunningState]: state => {
     state.gameState = game.hasRunningState;
+  },
+  [names.setIsGamePaused]: (state, isGamePaused) => {
+    state.isGamePaused = isGamePaused;
   },
   [names.substractHealthPoints]: state => {
     if (state.healthPoints === 1) {

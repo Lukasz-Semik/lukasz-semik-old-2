@@ -23,20 +23,22 @@
           <coin-element />
         </counter-element>
       </div>
+
+      <button @click="onPauseClick" :class="$style['close-button']">x</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 import { game } from '@/store/game';
 import BoardPanel from '@/assets/underwater/board.svg';
 
 import HealthBar from './HealthBar/HealthBar';
-import { CoinElement, CounterElement, DiamondElement, counterColors } from '../Elements';
+import { CoinElement, DiamondElement, CounterElement, counterColors } from '../Elements';
 
-const { healthPoints, gameScore, gameGold, gameState } = game;
+const { healthPoints, gameScore, gameGold, gameState, setIsGamePaused } = game;
 
 export default {
   name: 'GamePanel',
@@ -51,6 +53,13 @@ export default {
     return {
       isMounted: false,
     };
+  },
+  methods: {
+    ...mapMutations({ setIsGamePaused }),
+    onPauseClick() {
+      this.$modal.show('pause-modal');
+      this.setIsGamePaused(true);
+    },
   },
   computed: {
     ...mapGetters({ healthPoints, gameState, gameGold, gameScore }),

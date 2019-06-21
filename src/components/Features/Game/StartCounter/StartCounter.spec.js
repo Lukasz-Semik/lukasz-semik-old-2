@@ -2,7 +2,7 @@ import Vuex from 'vuex';
 import { TransitionStub, shallowMount, createLocalVue } from '@vue/test-utils';
 
 import { game } from '@/store/game';
-import { findByTestAttr } from '@/helpers/tests';
+import { findByTestAttr } from '@/utils/tests';
 
 import StartCounter from './StartCounter';
 

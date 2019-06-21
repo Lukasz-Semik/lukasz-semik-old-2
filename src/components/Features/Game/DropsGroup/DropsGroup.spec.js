@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import { findAllByTestAttr } from '@/helpers/tests';
+import { findAllByTestAttr } from '@/utils/tests';
 
 import DropsGroup from './DropsGroup';
 

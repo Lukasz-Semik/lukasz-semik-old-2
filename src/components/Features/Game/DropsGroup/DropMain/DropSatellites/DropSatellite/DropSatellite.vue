@@ -1,10 +1,22 @@
 <template>
-  <button v-if="isVisible" data-test="satellite" :class="className" @click="onHit" />
+  <animated-element
+    v-if="isVisible"
+    data-test="satellite"
+    tag="button"
+    :class-name="className"
+    is-game-pause-reacting
+    @handleClick="onHit"
+  />
 </template>
 
 <script>
+import { AnimatedElement } from '@/components/Elements';
+
 export default {
   name: 'DropSatellite',
+  components: {
+    AnimatedElement,
+  },
   props: {
     isVisible: {
       type: Boolean,

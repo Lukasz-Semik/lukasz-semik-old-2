@@ -2,11 +2,11 @@
   <div :class="$style['wrapper']">
     <drop-main
       v-for="drop in drops"
-      data-test="drop"
       :key="drop.id"
       :id="drop.id"
       :game-state="gameState"
       :set-game-intro-state="setGameIntroState"
+      :is-game-paused="isGamePaused"
       @handleSwimEnd="onSwimEnd"
       @handleDropClick="onDropClick"
     />
@@ -19,7 +19,13 @@ import uuid from 'uuid/v4';
 
 import { game } from '@/store/game';
 
-const { gameState, substractHealthPoints, setGameIntroState, updateGameStatistics } = game;
+const {
+  gameState,
+  isGamePaused,
+  substractHealthPoints,
+  setGameIntroState,
+  updateGameStatistics,
+} = game;
 
 import DropMain from './DropMain/DropMain';
 
@@ -46,7 +52,7 @@ export default {
     this.drops = new Array(dropsQty).fill(null).map(() => ({ id: uuid() }));
   },
   computed: {
-    ...mapGetters({ gameState }),
+    ...mapGetters({ gameState, isGamePaused }),
   },
   methods: {
     ...mapMutations({ setGameIntroState, substractHealthPoints, updateGameStatistics }),

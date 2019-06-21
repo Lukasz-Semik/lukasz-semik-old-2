@@ -1,6 +1,6 @@
 <template>
   <div :class="[$style['wrapper']]">
-    <drops-group :update-game-score="updateGameStatistics" />
+    <drops-group />
 
     <game-panel />
 
@@ -9,6 +9,8 @@
     <button v-if="shouldShowStartingButton" :class="$style['button']" @click="setGameCountingState">
       Start the Game!
     </button>
+
+    <game-pause />
   </div>
 </template>
 
@@ -20,6 +22,7 @@ import { game } from '@/store/game';
 import DropsGroup from './DropsGroup/DropsGroup';
 import StartCounter from './StartCounter/StartCounter';
 import GamePanel from './GamePanel/GamePanel';
+import GamePause from './GamePause/GamePause';
 
 const { gameState, setGameCountingState, updateGameStatistics } = game;
 
@@ -29,6 +32,7 @@ export default {
     DropsGroup,
     StartCounter,
     GamePanel,
+    GamePause,
   },
   computed: {
     ...mapGetters({ gameState }),

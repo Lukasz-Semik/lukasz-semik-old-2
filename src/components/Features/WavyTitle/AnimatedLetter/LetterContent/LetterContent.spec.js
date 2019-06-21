@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 
-import { findByTestAttr } from '@/helpers/tests';
+import { findByTestAttr } from '@/utils/tests';
 
 import LetterContent from './LetterContent';
 

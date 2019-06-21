@@ -1,19 +1,21 @@
 <template>
-  <div
+  <animated-element
     data-test="swim-wrapper"
-    :class="swimWrapperClassName"
-    :style="{ left: leftOffsetSwimWrapper }"
-    @animationend.self="onSwimEnd"
+    :class-name="swimWrapperClassName"
+    :style-props="{ left: leftOffsetSwimWrapper }"
+    is-game-pause-reacting
+    @handleAnimationEnd="onSwimEnd"
   >
     <drop-satellites :game-state="gameState" :is-hit="isHit" :is-drop-mounted="isSwimming" />
 
-    <div
+    <animated-element
       data-test="showing-wrapper"
-      :class="showingWrapperClassName"
-      :style="{ animationDelay: showDelay }"
-      @animationend.self="onShowEnd"
+      :class-name="showingWrapperClassName"
+      :style-props="{ animationDelay: showDelay }"
+      is-game-pause-reacting
+      @handleAnimationEnd="onShowEnd"
     >
-      <div data-test="drop" :class="dropClassName">
+      <animated-element data-test="drop" :class-name="dropClassName" is-game-pause-reacting>
         <button data-test="main-button" :class="$style['main-button']" @click="onMainClick" />
         <button
           data-test="secondary-button"
@@ -21,15 +23,16 @@
           :style="{ top: topOffsetSecondaryBtn, left: leftOffsetSecondaryBtn }"
           @click="onSecondaryClick"
         />
-      </div>
-    </div>
-  </div>
+      </animated-element>
+    </animated-element>
+  </animated-element>
 </template>
 
 <script>
 import { generateRandom } from '@/helpers/math';
 
 import { game } from '@/store/game';
+import { AnimatedElement } from '@/components/Elements';
 
 import DropSatellites from './DropSatellites/DropSatellites';
 
@@ -37,6 +40,7 @@ export default {
   name: 'DropMain',
   components: {
     DropSatellites,
+    AnimatedElement,
   },
   props: {
     id: {

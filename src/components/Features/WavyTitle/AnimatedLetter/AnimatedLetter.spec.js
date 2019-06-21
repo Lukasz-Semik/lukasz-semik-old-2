@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import { findByTestAttr } from '@/helpers/tests';
+import { findByTestAttr } from '@/utils/tests';
 
 import AnimatedLetter from './AnimatedLetter';
 

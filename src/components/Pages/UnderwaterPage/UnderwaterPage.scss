@@ -1,6 +1,9 @@
 .wrapper {
   position: relative;
-  font-family: 'Caveat Brush', cursive;
+
+  * {
+    font-family: 'Caveat Brush', cursive;
+  }
 }
 
 .title-wrapper {
