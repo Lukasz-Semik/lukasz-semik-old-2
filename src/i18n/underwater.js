@@ -3,4 +3,5 @@ export default {
   letsGo: `Let's Go!`,
   pause: 'Pause',
   resume: 'Resume',
+  restart: 'Restart',
 };

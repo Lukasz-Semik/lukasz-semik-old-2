@@ -1,4 +1,4 @@
-import { game } from './constants';
+import { game, initialState } from './constants';
 
 export const names = {
   setGameIntroState: 'setGameIntroState',
@@ -8,6 +8,7 @@ export const names = {
   // TODO: make more valid version
   updateGameStatistics: 'updateGameStatistics',
   setIsGamePaused: 'setIsGamePaused',
+  restartGame: 'restartGame',
 };
 
 export default {
@@ -16,6 +17,15 @@ export default {
   },
   [names.setGameCountingState]: state => {
     state.gameState = game.hasCountingState;
+  },
+  [names.restartGame]: state => {
+    const newState = {
+      ...initialState,
+      isGamePaused: false,
+      gameState: game.hasCountingState,
+    };
+
+    Object.assign(state, newState);
   },
   [names.setGameRunningState]: state => {
     state.gameState = game.hasRunningState;

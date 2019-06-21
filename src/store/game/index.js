@@ -2,18 +2,10 @@
 
 import getters, { names as gettersNames } from './getters';
 import mutations, { names as mutationsNames } from './mutations';
-import { game as gameStates } from './constants';
-
-const state = {
-  gameState: gameStates.hasRunningState,
-  healthPoints: 100,
-  isGamePaused: false,
-  gameGold: 0,
-  gameScore: 0,
-};
+import { game as gameStates, initialState } from './constants';
 
 export default {
-  state,
+  state: initialState,
   getters,
   mutations,
 };

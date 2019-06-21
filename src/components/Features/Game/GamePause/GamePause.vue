@@ -1,6 +1,6 @@
 <template>
   <modal-element :name="modalName" :title="$t('underwater.pause')">
-    <menu-group @handleResumeClick="onResumeClick" />
+    <menu-group @handleResumeClick="onResumeClick" @handleRestartClick="onRestartClick" />
   </modal-element>
 </template>
 
@@ -12,7 +12,7 @@ import { ModalElement } from '@/components/Elements';
 
 import MenuGroup from './MenuGroup/MenuGroup';
 
-const { setIsGamePaused } = game;
+const { setIsGamePaused, restartGame } = game;
 
 export default {
   name: 'GamePause',
@@ -34,9 +34,13 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({ setIsGamePaused }),
+    ...mapMutations({ setIsGamePaused, restartGame }),
     onResumeClick() {
       this.setIsGamePaused(false);
+      this.$modal.hide(this.modalName);
+    },
+    onRestartClick() {
+      this.restartGame();
       this.$modal.hide(this.modalName);
     },
   },

@@ -15,4 +15,9 @@ describe('<MenuGroup />', () => {
     findByTestAttr(wrapper, 'resume-button').trigger('click');
     expect(wrapper.emitted('handleResumeClick')).toHaveLength(1);
   });
+
+  it('should emit "handleRestartClick" when resume button is clicked', () => {
+    findByTestAttr(wrapper, 'restart-button').trigger('click');
+    expect(wrapper.emitted('handleRestartClick')).toHaveLength(1);
+  });
 });
