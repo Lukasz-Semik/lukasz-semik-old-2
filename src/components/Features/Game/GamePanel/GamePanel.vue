@@ -38,7 +38,7 @@ import BoardPanel from '@/assets/underwater/board.svg';
 import HealthBar from './HealthBar/HealthBar';
 import { CoinElement, DiamondElement, CounterElement, counterColors } from '../Elements';
 
-const { healthPoints, gameScore, gameGold, gameState, isGamePaused, setIsGamePaused } = game;
+const { healthPoints, gameScore, gameGold, gameState, setIsGamePaused } = game;
 
 export default {
   name: 'GamePanel',
@@ -58,11 +58,11 @@ export default {
     ...mapMutations({ setIsGamePaused }),
     onPauseClick() {
       this.$modal.show('pause-modal');
-      this.setIsGamePaused(!this.isGamePaused);
+      this.setIsGamePaused(true);
     },
   },
   computed: {
-    ...mapGetters({ healthPoints, gameState, gameGold, gameScore, isGamePaused }),
+    ...mapGetters({ healthPoints, gameState, gameGold, gameScore }),
     counterColor() {
       return counterColors.gold;
     },
