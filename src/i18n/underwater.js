@@ -4,4 +4,6 @@ export default {
   pause: 'Pause',
   resume: 'Resume',
   restart: 'Restart',
+  home: 'Home',
+  intro: 'Intro',
 };

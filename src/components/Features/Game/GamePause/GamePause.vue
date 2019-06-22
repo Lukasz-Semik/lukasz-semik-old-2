@@ -1,18 +1,24 @@
 <template>
   <modal-element :name="modalName" :title="$t('underwater.pause')">
-    <menu-group @handleResumeClick="onResumeClick" @handleRestartClick="onRestartClick" />
+    <menu-group
+      :game-state="gameState"
+      @handleResumeClick="onResumeClick"
+      @handleRestartClick="onRestartClick"
+      @handleIntroClick="onIntroClick"
+      @handleHomeClick="onHomeClick"
+    />
   </modal-element>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 import { game } from '@/store/game';
 import { ModalElement } from '@/components/Elements';
 
 import MenuGroup from './MenuGroup/MenuGroup';
 
-const { setIsGamePaused, restartGame } = game;
+const { gameState, setIsGamePaused, restartGame } = game;
 
 export default {
   name: 'GamePause',
@@ -29,19 +35,28 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({ gameState }),
     modalName() {
       return 'pause-modal';
     },
   },
   methods: {
     ...mapMutations({ setIsGamePaused, restartGame }),
-    onResumeClick() {
-      this.setIsGamePaused(false);
+    onItemClick(stateChanger) {
+      stateChanger();
       this.$modal.hide(this.modalName);
     },
+    onResumeClick() {
+      this.onItemClick(() => this.setIsGamePaused(false));
+    },
     onRestartClick() {
-      this.restartGame();
-      this.$modal.hide(this.modalName);
+      this.onItemClick(() => this.restartGame());
+    },
+    onIntroClick() {
+      this.onItemClick(() => this.restartGame(game.hasIntroState));
+    },
+    onHomeClick() {
+      this.onItemClick(() => this.restartGame(game.hasPristineState));
     },
   },
 };

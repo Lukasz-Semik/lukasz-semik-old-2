@@ -5,7 +5,7 @@ import mutations, { names as mutationsNames } from './mutations';
 import { game as gameStates, initialState } from './constants';
 
 export default {
-  state: initialState,
+  state: { ...initialState },
   getters,
   mutations,
 };

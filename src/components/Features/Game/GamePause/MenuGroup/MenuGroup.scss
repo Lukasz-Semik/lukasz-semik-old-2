@@ -2,13 +2,14 @@
   @include flex-center;
 
   flex-direction: column;
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 .menu-item {
   @include button-reset;
 
   position: relative;
+  margin-bottom: 2rem;
   font-size: 5rem;
   color: $gold-dark;
   transition: color 0.3s ease-in-out;
