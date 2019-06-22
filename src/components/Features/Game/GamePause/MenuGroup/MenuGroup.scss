@@ -2,7 +2,7 @@
   @include flex-center;
 
   flex-direction: column;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .menu-item {
@@ -31,4 +31,15 @@
       transform: scaleX(1);
     }
   }
+}
+
+.score-wrapper {
+  @include flex-center;
+
+  transform: translateX(1.5rem);
+}
+
+.text {
+  margin-right: 2rem;
+  font-size: 4rem;
 }

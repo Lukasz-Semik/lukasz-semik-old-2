@@ -5,8 +5,7 @@
       v-for="satellite in 4"
       :key="satellite"
       :index="satellite"
-      :is-visible="isSatelliteVisible || isFullyVisible"
-      :is-fully-visible="isFullyVisible"
+      :is-visible="isVisible"
     />
   </div>
 </template>
@@ -42,14 +41,7 @@ export default {
     };
   },
   computed: {
-    isSatelliteVisible() {
-      if (this.gameState === game.hasCountingState) {
-        return !this.isHit && this.isDropMounted;
-      }
-
-      return false;
-    },
-    isFullyVisible() {
+    isVisible() {
       return this.isHit && this.isDropMounted && this.gameState === game.hasRunningState;
     },
   },

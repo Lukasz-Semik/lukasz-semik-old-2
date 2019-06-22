@@ -6,21 +6,21 @@
     @animationend="isMounted = true"
   >
     <div :class="$style['board-wrapper']">
-      <board-panel />
+      <board-panel/>
     </div>
 
     <div data-test="controls-wrapper" :class="controlsWrapperClassName">
-      <health-bar :health-points="healthPoints" />
+      <health-bar :health-points="healthPoints"/>
 
       <div :class="$style['counters-wrapper']">
         <div :class="$style['diamond-wrapper']">
-          <counter-element :value="gameScore" :color="counterColor">
-            <diamond-element />
+          <counter-element :value="gameScore">
+            <diamond-element/>
           </counter-element>
         </div>
 
-        <counter-element :value="gameGold" :color="counterColor">
-          <coin-element />
+        <counter-element :value="gameGold">
+          <coin-element/>
         </counter-element>
       </div>
 
@@ -36,7 +36,7 @@ import { game } from '@/store/game';
 import BoardPanel from '@/assets/underwater/board.svg';
 
 import HealthBar from './HealthBar/HealthBar';
-import { CoinElement, DiamondElement, CounterElement, counterColors } from '../Elements';
+import { CoinElement, DiamondElement, CounterElement } from '../Elements';
 
 const { healthPoints, gameScore, gameGold, gameState, setIsGamePaused } = game;
 
@@ -63,9 +63,6 @@ export default {
   },
   computed: {
     ...mapGetters({ healthPoints, gameState, gameGold, gameScore }),
-    counterColor() {
-      return counterColors.gold;
-    },
     isGameRunning() {
       return this.gameState === game.hasRunningState;
     },

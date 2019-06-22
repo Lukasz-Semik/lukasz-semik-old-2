@@ -33,8 +33,9 @@ export default {
     state.isGamePaused = isGamePaused;
   },
   [names.substractHealthPoints]: state => {
-    if (state.healthPoints === 1) {
-      // state.gameState = game.hasOverState;
+    if (state.healthPoints <= 5) {
+      state.gameState = game.hasOverState;
+      state.isGamePaused = true;
     }
 
     // state.healthPoints--;

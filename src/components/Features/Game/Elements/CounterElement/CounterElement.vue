@@ -1,14 +1,16 @@
 <template>
   <div :class="$style['wrapper']">
     <div :class="$style['symbol-wrapper']">
-      <slot />
+      <slot/>
     </div>
 
     <p :class="valueWrapperClassName">
       <span v-if="!isXHidden" data-test="multiplier" :class="$style['multiplier']">x</span>
-      <span data-test="value" :class="valueClassName" @transitionend="onTransitionEnd">{{
+      <span data-test="value" :class="valueClassName" @transitionend="onTransitionEnd">
+        {{
         value
-      }}</span>
+        }}
+      </span>
     </p>
   </div>
 </template>
@@ -24,10 +26,6 @@ export default {
     isXHidden: {
       type: Boolean,
       default: false,
-    },
-    color: {
-      type: String,
-      required: true,
     },
   },
   watch: {
