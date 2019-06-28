@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     className() {
-      const { $style, index, isHit, isVisible, isFullyVisible } = this;
+      const { $style, index, isHit, isVisible } = this;
 
       return {
         [$style['button']]: true,

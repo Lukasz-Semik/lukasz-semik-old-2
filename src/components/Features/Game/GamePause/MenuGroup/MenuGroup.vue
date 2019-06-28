@@ -5,39 +5,47 @@
       data-test="resume-button"
       :class="$style['menu-item']"
       @click="$emit('handleResumeClick')"
-    >{{ $t('underwater.resume') }}</button>
+    >
+      {{ $t('underwater.resume') }}
+    </button>
 
     <button
       v-if="isRestartButtonVisible"
       data-test="restart-button"
       :class="$style['menu-item']"
       @click="$emit('handleRestartClick')"
-    >{{ $t('underwater.restart') }}</button>
+    >
+      {{ $t('underwater.restart') }}
+    </button>
 
     <button
       v-if="isIntroButtonVisible"
       data-test="intro-button"
       :class="$style['menu-item']"
       @click="$emit('handleIntroClick')"
-    >{{ $t('underwater.intro') }}</button>
+    >
+      {{ $t('underwater.intro') }}
+    </button>
 
     <button
       v-if="isHomeButtonVisible"
       data-test="home-button"
       :class="$style['menu-item']"
       @click="$emit('handleHomeClick')"
-    >{{ $t('underwater.home') }}</button>
+    >
+      {{ $t('underwater.home') }}
+    </button>
 
     <div v-if="isGameSummaryVisible">
       <div :class="$style['score-wrapper']">
-        <p data-test="score" :class="$style['text']">{{ $t('underwater.score')}}:</p>
+        <p data-test="score" :class="$style['text']">{{ $t('underwater.score') }}:</p>
         <counter-element :value="gameScore">
-          <diamond-element/>
+          <diamond-element />
         </counter-element>
       </div>
 
       <div :class="$style['score-wrapper']">
-        <p data-test="ranking" :class="$style['text']">{{ $t('underwater.ranking')}}: 1</p>
+        <p data-test="ranking" :class="$style['text']">{{ $t('underwater.ranking') }}: 1</p>
       </div>
     </div>
   </div>

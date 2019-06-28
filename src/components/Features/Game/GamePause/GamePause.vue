@@ -28,7 +28,7 @@ export default {
     MenuGroup,
   },
   watch: {
-    gameState(newVal, oldVal) {
+    gameState(newVal) {
       if (newVal === game.hasOverState) {
         this.$modal.show(this.modalName);
       }
