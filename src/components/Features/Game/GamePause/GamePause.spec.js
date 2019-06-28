@@ -1,6 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 
 import { generateTestGameVuex } from '@/utils/tests';
+import { game } from '@/store/game';
 
 import GamePause from './GamePause';
 
@@ -11,7 +12,12 @@ describe('<GamePause />', () => {
         mocks: {
           $t: key => key,
         },
-        ...generateTestGameVuex(),
+        ...generateTestGameVuex({
+          getters: {
+            gameScore: () => 1,
+            gameState: () => game.hasRunningState,
+          },
+        }),
       })
     ).toMatchSnapshot();
   });
