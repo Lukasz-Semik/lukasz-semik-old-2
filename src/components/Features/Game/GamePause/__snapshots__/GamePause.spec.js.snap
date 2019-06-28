@@ -2,6 +2,6 @@
 
 exports[`<GamePause /> should render properly 1`] = `
 <modal-element-stub name="pause-modal" title="underwater.pause">
-  <menu-group-stub></menu-group-stub>
+  <menu-group-stub gamestate="hasRunningState" gamescore="1"></menu-group-stub>
 </modal-element-stub>
 `;

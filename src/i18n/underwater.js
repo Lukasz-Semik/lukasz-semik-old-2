@@ -6,4 +6,6 @@ export default {
   restart: 'Restart',
   home: 'Home',
   intro: 'Intro',
+  score: 'Score',
+  ranking: 'Ranking',
 };

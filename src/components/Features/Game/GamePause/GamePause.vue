@@ -2,6 +2,7 @@
   <modal-element :name="modalName" :title="$t('underwater.pause')">
     <menu-group
       :game-state="gameState"
+      :game-score="gameScore"
       @handleResumeClick="onResumeClick"
       @handleRestartClick="onRestartClick"
       @handleIntroClick="onIntroClick"
@@ -18,13 +19,20 @@ import { ModalElement } from '@/components/Elements';
 
 import MenuGroup from './MenuGroup/MenuGroup';
 
-const { gameState, setIsGamePaused, restartGame } = game;
+const { gameState, gameScore, setIsGamePaused, restartGame } = game;
 
 export default {
   name: 'GamePause',
   components: {
     ModalElement,
     MenuGroup,
+  },
+  watch: {
+    gameState(newVal) {
+      if (newVal === game.hasOverState) {
+        this.$modal.show(this.modalName);
+      }
+    },
   },
   created() {
     if (window) {
@@ -35,7 +43,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ gameState }),
+    ...mapGetters({ gameState, gameScore }),
     modalName() {
       return 'pause-modal';
     },

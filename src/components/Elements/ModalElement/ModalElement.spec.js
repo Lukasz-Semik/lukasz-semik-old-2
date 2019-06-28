@@ -10,6 +10,7 @@ describe('<ModalElement />', () => {
   const wrapper = shallowMount(ModalElement, {
     propsData: {
       title: 'Some title',
+      name: 'modal-name',
     },
     slots: {
       default: slot,

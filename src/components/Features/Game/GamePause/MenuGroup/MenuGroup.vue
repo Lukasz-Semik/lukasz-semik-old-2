@@ -1,6 +1,7 @@
 <template>
   <div :class="$style['menu-wrapper']">
     <button
+      v-if="isResumeButtonVisible"
       data-test="resume-button"
       :class="$style['menu-item']"
       @click="$emit('handleResumeClick')"
@@ -34,29 +35,63 @@
     >
       {{ $t('underwater.home') }}
     </button>
+
+    <div v-if="isGameSummaryVisible">
+      <div :class="$style['score-wrapper']">
+        <p data-test="score" :class="$style['text']">{{ $t('underwater.score') }}:</p>
+        <counter-element :value="gameScore">
+          <diamond-element />
+        </counter-element>
+      </div>
+
+      <div :class="$style['score-wrapper']">
+        <p data-test="ranking" :class="$style['text']">{{ $t('underwater.ranking') }}: 1</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { game } from '@/store/game';
 
+import { DiamondElement, CounterElement } from '../../Elements';
+
 export default {
   name: 'MenuGroup',
+  components: {
+    DiamondElement,
+    CounterElement,
+  },
   props: {
     gameState: {
       type: String,
       required: true,
     },
+    gameScore: {
+      type: Number,
+      required: true,
+    },
   },
   computed: {
+    isResumeButtonVisible() {
+      return this.gameState !== game.hasOverState;
+    },
     isRestartButtonVisible() {
-      return this.gameState === game.hasRunningState;
+      return [game.hasRunningState, game.hasOverState].includes(this.gameState);
     },
     isHomeButtonVisible() {
       return this.gameState !== game.hasPristineState;
     },
     isIntroButtonVisible() {
-      return [game.hasCountingState, game.hasRunningState].includes(this.gameState);
+      return [
+        game.hasPristineState,
+        game.hasCountingState,
+        game.hasRunningState,
+        game.hasOverState,
+      ].includes(this.gameState);
+    },
+    isGameSummaryVisible() {
+      return this.gameState === game.hasOverState;
     },
   },
 };
