@@ -21,7 +21,7 @@
       @handleAnimationEnd="onShowEnd"
     >
       <animated-element data-test="drop" :class-name="dropClassName" is-game-pause-reacting>
-        <button data-test="main-button" :class="$style['main-button']" @click="onClick"/>
+        <button data-test="main-button" :class="$style['main-button']" @click="onClick" />
         <button
           data-test="secondary-button"
           :class="$style['secondary-button']"
