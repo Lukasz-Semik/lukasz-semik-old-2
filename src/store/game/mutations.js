@@ -41,11 +41,15 @@ export default {
     // state.healthPoints--;
     state.healthPoints -= 5;
   },
-  [names.updateGameStatistics]: state => {
-    const newGameScore = state.gameScore + 1;
+  [names.updateGameStatistics]: (state, { score = 0, gold = 0 }) => {
+    const newGameScore = state.gameScore + score;
 
     if (newGameScore % 5 === 0) {
       state.gameGold++;
+    }
+
+    if (gold) {
+      state.gameGold += gold;
     }
 
     state.gameScore = newGameScore;

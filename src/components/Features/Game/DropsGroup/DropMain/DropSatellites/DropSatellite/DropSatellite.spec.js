@@ -37,9 +37,10 @@ describe('<DropSatellite />', () => {
       expect($satellite.classes()).not.toContain('is-hit');
     });
 
-    it('should add is-hit class after click', () => {
+    it('should add is-hit class after click and emit handleSatelliteClick', () => {
       findByTestAttr(wrapper, 'satellite').trigger('click');
       expect(findByTestAttr(wrapper, 'satellite').classes()).toContain('is-hit');
+      expect(wrapper.emitted('handleSatelliteClick')).toHaveLength(1);
     });
   });
 });

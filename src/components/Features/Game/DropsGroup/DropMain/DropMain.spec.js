@@ -6,18 +6,21 @@ import { game } from '@/store/game';
 
 import DropMain from './DropMain';
 
-// TODO: add tests for game.hasRunningState.
-
 describe('<DropMain />', () => {
   const id = 'some-id';
 
   const buttonSelectors = ['main-button', 'secondary-button'];
 
-  const mountComponent = ({ gameState = game.hasPristineState, setGameIntroStateSpy }) =>
+  const mountComponent = ({
+    gameState = game.hasPristineState,
+    setGameIntroStateSpy,
+    updateGameStatisticsSpy = jest.fn(),
+  }) =>
     mount(DropMain, {
       propsData: {
         id,
         gameState,
+        updateGameStatistics: updateGameStatisticsSpy,
         setGameIntroState: setGameIntroStateSpy,
       },
       ...generateTestGameVuex(),
@@ -141,6 +144,82 @@ describe('<DropMain />', () => {
       expect(wrapper.emitted('handleSwimEnd')[0][0]).toEqual({
         id,
         isHit: false,
+      });
+    });
+  });
+
+  describe(`when game ${game.hasRunningState}`, () => {
+    describe('not clicked drop', () => {
+      const updateGameStatisticsSpy = jest.fn();
+      const setGameIntroStateSpy = jest.fn();
+
+      const wrapper = mountComponent({
+        gameState: game.hasRunningState,
+        updateGameStatisticsSpy,
+        setGameIntroStateSpy,
+      });
+
+      const $showingWrapper = findByTestAttr(wrapper, 'showing-wrapper');
+      const $swimWrapper = findByTestAttr(wrapper, 'swim-wrapper');
+
+      it('should have "has-showing-animation" on showingWrapper', () => {
+        expect($showingWrapper.classes()).toContain('has-showing-animation');
+      });
+
+      it('should set "is-swimming" class to swimWrapper when showing is end', () => {
+        expect($swimWrapper.classes()).not.toContain('is-swimming');
+        $showingWrapper.trigger('animationend');
+        expect($swimWrapper.classes()).toContain('is-swimming');
+      });
+
+      it('should emit "handleSwimEnd" with id and is not hit flag when swimming ends', () => {
+        $swimWrapper.trigger('animationend');
+        expect(wrapper.emitted('handleSwimEnd')[0][0]).toEqual({
+          id,
+          isHit: false,
+        });
+      });
+    });
+
+    describe('clicked drop', () => {
+      const updateGameStatisticsSpy = jest.fn();
+      const setGameIntroStateSpy = jest.fn();
+
+      const wrapper = mountComponent({
+        gameState: game.hasRunningState,
+        updateGameStatisticsSpy,
+        setGameIntroStateSpy,
+      });
+
+      const $showingWrapper = findByTestAttr(wrapper, 'showing-wrapper');
+      const $swimWrapper = findByTestAttr(wrapper, 'swim-wrapper');
+
+      it('should have "has-showing-animation" on showingWrapper', () => {
+        expect($showingWrapper.classes()).toContain('has-showing-animation');
+      });
+
+      it('should set "is-swimming" class to swimWrapper when showing is end', () => {
+        expect($swimWrapper.classes()).not.toContain('is-swimming');
+        $showingWrapper.trigger('animationend');
+        expect($swimWrapper.classes()).toContain('is-swimming');
+      });
+
+      findByTestAttr(wrapper, 'main-button').trigger('click');
+
+      it('should not invoke setGameIntroSpy', () => {
+        expect(setGameIntroStateSpy).not.toHaveBeenCalled();
+      });
+
+      it('should invoke updateGameStatisticsSpy with score set to 1', () => {
+        expect(updateGameStatisticsSpy).toHaveBeenCalledWith({ score: 1 });
+      });
+
+      it('should emit "handleSwimEnd" with id and is hit flag when swimming ends', () => {
+        $swimWrapper.trigger('animationend');
+        expect(wrapper.emitted('handleSwimEnd')[0][0]).toEqual({
+          id,
+          isHit: true,
+        });
       });
     });
   });

@@ -11,12 +11,14 @@ describe('<DropSatellites>', () => {
     gameState = game.hasPristineState,
     isDropMounted = true,
     isHit = false,
+    updateGameStatistics = jest.fn(),
   }) =>
     mount(DropSatellites, {
       propsData: {
         gameState,
         isDropMounted,
         isHit,
+        updateGameStatistics,
       },
       ...generateTestGameVuex(),
     });
@@ -68,6 +70,42 @@ describe('<DropSatellites>', () => {
       );
 
       expect($satellites).toHaveLength(4);
+    });
+
+    it('should properly handle clicks on satellites ', () => {
+      const updateGameStatisticsSpy = jest.fn();
+      const wrapper = mountSatellites({
+        gameState: game.hasRunningState,
+        isDropMounted: true,
+        isHit: true,
+        updateGameStatistics: updateGameStatisticsSpy,
+      });
+
+      const $satellites = findAllByTestAttr(wrapper, 'satellite');
+
+      $satellites.at(0).trigger('click');
+      expect(updateGameStatisticsSpy).toHaveBeenCalledWith({
+        score: 1,
+        gold: 1,
+      });
+
+      $satellites.at(1).trigger('click');
+      expect(updateGameStatisticsSpy).toHaveBeenCalledWith({
+        score: 1,
+        gold: 2,
+      });
+
+      $satellites.at(2).trigger('click');
+      expect(updateGameStatisticsSpy).toHaveBeenCalledWith({
+        score: 2,
+        gold: 2,
+      });
+
+      $satellites.at(1).trigger('click');
+      expect(updateGameStatisticsSpy).toHaveBeenCalledWith({
+        score: 3,
+        gold: 5,
+      });
     });
   });
 });
