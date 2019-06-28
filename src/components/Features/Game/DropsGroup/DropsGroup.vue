@@ -7,6 +7,7 @@
       :game-state="gameState"
       :set-game-intro-state="setGameIntroState"
       :is-game-paused="isGamePaused"
+      :update-game-statistics="updateGameStatistics"
       @handleSwimEnd="onSwimEnd"
       @handleDropClick="onDropClick"
     />
@@ -66,9 +67,6 @@ export default {
       }
 
       this.drops = this.drops.map(drop => (drop.id === id ? { id: uuid() } : drop));
-    },
-    onDropClick() {
-      this.updateGameStatistics();
     },
   },
 };

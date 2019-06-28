@@ -35,6 +35,7 @@ export default {
   methods: {
     onHit() {
       this.isHit = true;
+      this.$emit('handleSatelliteClick');
     },
   },
   computed: {

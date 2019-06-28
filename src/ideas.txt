@@ -1,0 +1,5 @@
+ITEMS IDEAS:
+  - life + 10hp, cost: 5coins
+  - gold on each drop -> 
+  - shield -> 5drops, cost: 8 coins
+  - 2 points on each drop, cost: 10 coins
